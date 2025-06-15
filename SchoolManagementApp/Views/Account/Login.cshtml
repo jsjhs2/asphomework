@@ -1,0 +1,276 @@
+﻿@model SchoolManagementApp.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "登录系统";
+    Layout = null; // 不使用布局
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生成绩管理系统 - 登录</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --info-color: #0dcaf0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .login-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .login-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .login-body {
+            padding: 30px;
+        }
+
+        .login-logo {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .login-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .btn-login {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-login:hover {
+            background: #0b5ed7;
+            transform: translateY(-2px);
+        }
+
+        .login-footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--light-color);
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .role-selector {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .role-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .role-btn:first-child {
+            border-right: 1px solid #e9ecef;
+        }
+
+        .test-credentials {
+            background: #e9f7fe;
+            border-left: 4px solid var(--info-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .test-credentials h6 {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--info-color);
+        }
+
+        .test-credentials ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .test-credentials li {
+            margin-bottom: 5px;
+        }
+
+        /* 动画 */
+        
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h1 class="login-title">学生成绩管理系统</h1>
+                <p class="login-subtitle">请登录您的账户</p>
+            </div>
+
+            <div class="login-body">
+                <div class="role-selector">
+                    <button type="button" class="role-btn active" id="teacherRole">
+                        <i class="fas fa-chalkboard-teacher me-1"></i>教师登录
+                    </button>
+                    <button type="button" class="role-btn" id="studentRole">
+                        <i class="fas fa-user-graduate me-1"></i>学生登录
+                    </button>
+                </div>
+
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Username" class="form-label">
+                            <i class="fas fa-user me-1"></i>用户名
+                        </label>
+                        <input asp-for="Username" class="form-control" id="usernameInput" placeholder="请输入用户名" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label">
+                            <i class="fas fa-lock me-1"></i>密码
+                        </label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="请输入密码" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">记住我</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-login">
+                        <i class="fas fa-sign-in-alt me-1"></i>登录
+                    </button>
+
+                    <div class="test-credentials">
+                        <h6><i class="fas fa-info-circle me-1"></i>测试账户</h6>
+                        <ul>
+                            <li>教师账户: <strong>sys</strong> / 密码: <strong>123456</strong></li>
+                            <li>学生账户: <strong>学号</strong> / 密码: <strong>123456</strong></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="login-footer">
+                &copy; 2023 学生成绩管理系统 | 版权所有
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 角色选择
+            $('#teacherRole').click(function() {
+                $('.role-btn').removeClass('active');
+                $(this).addClass('active');
+                $('#usernameInput').attr('placeholder', '请输入教师账号');
+            });
+
+            $('#studentRole').click(function() {
+                $('.role-btn').removeClass('active');
+                $(this).addClass('active');
+                $('#usernameInput').attr('placeholder', '请输入学号');
+            });
+
+            // 表单动画
+            $('form input').on('focus', function() {
+                $(this).parent().addClass('focused');
+            }).on('blur', function() {
+                $(this).parent().removeClass('focused');
+            });
+        });
+    </script>
+</body>
+</html>

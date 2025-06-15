@@ -1,0 +1,381 @@
+﻿@model IEnumerable<SchoolManagementApp.Models.Grade>
+
+@{
+    ViewData["Title"] = "成绩管理";
+    var classes = ViewBag.Classes as IEnumerable<SelectListItem> ?? new List<SelectListItem>();
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="fas fa-chart-bar me-2"></i>@ViewData["Title"]
+        </h1>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="fas fa-plus-circle me-1"></i>添加新成绩
+        </a>
+    </div>
+
+    <!-- 班级筛选面板 -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-light py-3">
+            <h5 class="mb-0">
+                <i class="fas fa-filter me-2 text-primary"></i>成绩筛选
+            </h5>
+        </div>
+        <div class="card-body">
+            <form method="get" asp-action="Index" class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-users me-1"></i>选择班级
+                        </label>
+                        <select name="classId" asp-items="@classes" class="form-select">
+                            <option value="">所有班级</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-book me-1"></i>选择科目
+                        </label>
+                        <select name="subject" class="form-select">
+                            <option value="">所有科目</option>
+                            @foreach (var subject in ViewBag.Subjects)
+                            {
+                                <option value="@subject">@subject</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search me-1"></i>筛选
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 成绩统计卡片 -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card border-start border-5 border-primary">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-book fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="card-title text-muted mb-1">成绩总数</h6>
+                            <h4 class="mb-0">@ViewBag.TotalGrades</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-start border-5 border-success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-success text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-user-graduate fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="card-title text-muted mb-1">涉及学生</h6>
+                            <h4 class="mb-0">@ViewBag.TotalStudents</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-start border-5 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-info text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-calculator fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="card-title text-muted mb-1">平均成绩</h6>
+                            <h4 class="mb-0">@ViewBag.AverageScore.ToString("F1")</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-start border-5 border-warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-warning text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-trophy fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="card-title text-muted mb-1">最高分</h6>
+                            <h4 class="mb-0">@ViewBag.MaxScore</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成绩表格 -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>成绩列表
+                </h5>
+                <div class="text-white small">
+                    显示 @Model.Count() 条记录
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th><i class="fas fa-user me-1"></i>学生姓名</th>
+                            <th><i class="fas fa-users me-1"></i>班级</th>
+                            <th><i class="fas fa-book me-1"></i>科目</th>
+                            <th><i class="fas fa-star me-1"></i>分数</th>
+                            <th><i class="fas fa-chart-line me-1"></i>评级</th>
+                            <th class="text-center"><i class="fas fa-cogs me-1"></i>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-2">
+                                            @item.Student.Name.Substring(0, 1)
+                                        </div>
+                                        @Html.DisplayFor(modelItem => item.Student.Name)
+                                    </div>
+                                </td>
+                                <td>
+                                    @if (item.Student.Class != null)
+                                    {
+                                        <span class="badge bg-primary rounded-pill">
+                                            <i class="fas fa-users me-1"></i>
+                                            @item.Student.Class.ClassName
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark rounded-pill">
+                                            <i class="fas fa-exclamation-triangle me-1"></i>
+                                            未分配班级
+                                        </span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.Subject)</td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        @{
+                                            var percentage = (item.Score / 100) * 100;
+                                            var colorClass = "bg-success";
+                                            if (item.Score < 60) colorClass = "bg-danger";
+                                            else if (item.Score < 70) colorClass = "bg-warning";
+                                            else if (item.Score < 80) colorClass = "bg-info";
+                                            else if (item.Score < 90) colorClass = "bg-primary";
+                                        }
+                                        <div class="progress-bar @colorClass"
+                                             role="progressbar"
+                                             style="width: @percentage%"
+                                             aria-valuenow="@item.Score"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100">
+                                            <strong>@Html.DisplayFor(modelItem => item.Score)</strong>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        var rating = "优秀";
+                                        if (item.Score < 90) rating = "良好";
+                                        if (item.Score < 80) rating = "中等";
+                                        if (item.Score < 70) rating = "及格";
+                                        if (item.Score < 60) rating = "不及格";
+
+                                        var ratingColor = "text-success";
+                                        if (item.Score < 60) ratingColor = "text-danger";
+                                        else if (item.Score < 70) ratingColor = "text-warning";
+                                        else if (item.Score < 80) ratingColor = "text-info";
+                                        else if (item.Score < 90) ratingColor = "text-primary";
+                                    }
+                                    <span class="fw-bold @ratingColor">@rating</span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.GradeId"
+                                           class="btn btn-sm btn-outline-primary" title="编辑成绩">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.GradeId"
+                                           class="btn btn-sm btn-outline-danger" title="删除成绩">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center mt-4">
+                    <i class="fas fa-info-circle me-2"></i>暂无成绩记录，请点击"添加新成绩"按钮创建记录。
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .avatar-sm {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .badge {
+            padding: 6px 10px;
+            font-weight: 500;
+        }
+
+        .btn-group .btn {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(13, 110, 253, 0.05);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .progress {
+            border-radius: 10px;
+            background-color: #e9ecef;
+        }
+
+        .progress-bar {
+            border-radius: 10px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .border-start {
+            border-left-width: 5px !important;
+        }
+
+        .bg-danger {
+            background-color: #dc3545 !important;
+        }
+
+        .bg-warning {
+            background-color: #ffc107 !important;
+        }
+
+        .bg-info {
+            background-color: #0dcaf0 !important;
+        }
+
+        .bg-primary {
+            background-color: #0d6efd !important;
+        }
+
+        .bg-success {
+            background-color: #198754 !important;
+        }
+
+        .text-danger {
+            color: #dc3545 !important;
+        }
+
+        .text-warning {
+            color: #ffc107 !important;
+        }
+
+        .text-info {
+            color: #0dcaf0 !important;
+        }
+
+        .text-primary {
+            color: #0d6efd !important;
+        }
+
+        .text-success {
+            color: #198754 !important;
+        }
+
+        .form-select {
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // 设置筛选表单的值
+            const urlParams = new URLSearchParams(window.location.search);
+            const classId = urlParams.get('classId');
+            const subject = urlParams.get('subject');
+
+            if (classId) {
+                $('select[name="classId"]').val(classId);
+            }
+
+            if (subject) {
+                $('select[name="subject"]').val(subject);
+            }
+
+            // 添加按钮动画
+            $('.btn-success').hover(
+                function() {
+                    $(this).find('i').addClass('fa-beat');
+                },
+                function() {
+                    $(this).find('i').removeClass('fa-beat');
+                }
+            );
+        });
+    </script>
+}

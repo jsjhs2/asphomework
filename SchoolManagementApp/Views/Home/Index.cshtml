@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "首页";
+}
+
+<div class="text-center">
+    <h1 class="display-4">欢迎使用学生成绩管理系统</h1>
+    <p>请使用上方导航菜单管理学生信息和成绩记录</p>
+
+    <div class="mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">学生管理</h5>
+                        <p class="card-text">添加、编辑和删除学生信息</p>
+                        <a asp-controller="Student" asp-action="Index" class="btn btn-primary">管理学生</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">成绩管理</h5>
+                        <p class="card-text">添加、编辑和删除学生成绩</p>
+                        <a asp-controller="Grade" asp-action="Index" class="btn btn-primary">管理成绩</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

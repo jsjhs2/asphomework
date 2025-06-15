@@ -1,0 +1,328 @@
+﻿@model SchoolManagementApp.Models.Student
+@{
+    ViewData["Title"] = "添加新学生";
+    var classes = ViewBag.Classes as IEnumerable<SelectListItem> ?? new List<SelectListItem>();
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="card-title mb-0 text-center">
+                        <i class="fas fa-user-plus me-2"></i>添加新学生
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" id="studentForm">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <!-- 基本信息行 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="form-label fw-bold">
+                                        <i class="fas fa-user me-1"></i>姓名
+                                    </label>
+                                    <input asp-for="Name" class="form-control" placeholder="请输入学生姓名" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="RollNumber" class="form-label fw-bold">
+                                        <i class="fas fa-id-card me-1"></i>学号
+                                    </label>
+                                    <input asp-for="RollNumber" class="form-control" placeholder="请输入学生学号" />
+                                    <span asp-validation-for="RollNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 班级信息行 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ClassId" class="form-label fw-bold">
+                                        <i class="fas fa-users me-1"></i>班级
+                                    </label>
+                                    <select asp-for="ClassId" asp-items="@classes" class="form-select">
+                                        <option value="">-- 请选择班级 --</option>
+                                    </select>
+                                    <span asp-validation-for="ClassId" class="text-danger"></span>
+                                    <small class="form-text text-muted">如果班级不存在，请先创建班级</small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-calendar-alt me-1"></i>出生日期
+                                    </label>
+                                    <input asp-for="DateOfBirth" type="date" class="form-control" />
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 联系信息行 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email" class="form-label fw-bold">
+                                        <i class="fas fa-envelope me-1"></i>邮箱
+                                    </label>
+                                    <input asp-for="Email" type="email" class="form-control" placeholder="example@school.edu" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber" class="form-label fw-bold">
+                                        <i class="fas fa-phone me-1"></i>联系电话
+                                    </label>
+                                    <input asp-for="PhoneNumber" class="form-control" placeholder="请输入联系电话" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 按钮区域 -->
+                        <div class="d-flex justify-content-between mt-5">
+                            <a asp-action="Index" class="btn btn-secondary btn-lg px-4">
+                                <i class="fas fa-arrow-left me-2"></i>返回列表
+                            </a>
+                            <button type="submit" class="btn btn-success btn-lg px-4">
+                                <i class="fas fa-user-plus me-2"></i>添加学生
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 提示信息卡片 -->
+            <div class="card border-primary mt-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle text-primary me-2"></i>添加学生指南
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="icon-circle bg-success text-white me-3">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h6>必填信息</h6>
+                                    <p class="mb-0 small">姓名、学号和班级是必填项，请确保填写准确</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="icon-circle bg-primary text-white me-3">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div>
+                                    <h6>班级分配</h6>
+                                    <p class="mb-0 small">每个学生必须分配到一个班级，否则无法添加成绩</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="icon-circle bg-warning text-white me-3">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div>
+                                    <h6>学号唯一性</h6>
+                                    <p class="mb-0 small">学号必须是唯一的，系统将自动检查重复</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="icon-circle bg-info text-white me-3">
+                                    <i class="fas fa-birthday-cake"></i>
+                                </div>
+                                <div>
+                                    <h6>出生日期范围</h6>
+                                    <p class="mb-0 small">学生年龄应在10-30岁之间</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .card-header {
+            font-size: 1.25rem;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 1.05rem;
+            border: 1px solid #ced4da;
+            transition: all 0.3s ease;
+        }
+
+            .form-control:focus {
+                border-color: #86b7fe;
+                box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            }
+
+        .form-select {
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 1.05rem;
+            border: 1px solid #ced4da;
+            transition: all 0.3s ease;
+        }
+
+            .form-select:focus {
+                border-color: #86b7fe;
+                box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            }
+
+        .form-label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .btn-lg {
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+            .btn-success:hover {
+                background-color: #157347;
+                border-color: #146c43;
+                transform: translateY(-2px);
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5c636a;
+                border-color: #565e64;
+                transform: translateY(-2px);
+            }
+
+        .is-invalid {
+            border-color: #dc3545 !important;
+        }
+
+        .animate__headShake {
+            animation-duration: 1s;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .border-primary {
+            border-width: 2px;
+        }
+    </style>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // 设置出生日期默认值（18年前）
+            const today = new Date();
+            const minDate = new Date(today.getFullYear() - 30, today.getMonth(), today.getDate());
+            const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate());
+
+            // 设置日期输入框的限制
+            $('#DateOfBirth').attr('max', maxDate.toISOString().split('T')[0]);
+            $('#DateOfBirth').attr('min', minDate.toISOString().split('T')[0]);
+
+            // 设置日期输入框的默认值为18年前
+            const defaultDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+            $('#DateOfBirth').val(defaultDate.toISOString().split('T')[0]);
+
+            // 实时表单验证
+            $('form input, form select').on('blur', function () {
+                $(this).valid();
+            });
+
+            // 表单提交前验证
+            $('#studentForm').on('submit', function (e) {
+                if (!$(this).valid()) {
+                    e.preventDefault();
+
+                    // 添加错误动画效果
+                    $('.input-validation-error').each(function () {
+                        $(this).addClass('is-invalid animate__animated animate__headShake');
+                        setTimeout(() => {
+                            $(this).removeClass('animate__headShake');
+                        }, 1000);
+                    });
+
+                    // 滚动到第一个错误
+                    $('html, body').animate({
+                        scrollTop: $('.input-validation-error').first().offset().top - 100
+                    }, 500);
+                }
+            });
+
+            // 移除错误动画
+            $('form input, form select').on('focus', function () {
+                $(this).removeClass('animate__headShake');
+            });
+
+            // 班级选择样式增强
+            $('select').on('change', function () {
+                if ($(this).val()) {
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                } else {
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                }
+            });
+        });
+    </script>
+}

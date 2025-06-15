@@ -1,0 +1,400 @@
+﻿@*  @model SchoolManagementApp.Models.Student
+
+ @{
+     ViewData["Title"] = "学生首页";
+ }
+
+ <div class="container mt-4">
+     <div class="d-flex justify-content-between align-items-center mb-4">
+         <h1 class="display-5 fw-bold text-primary">
+             <i class="fas fa-user-graduate me-2"></i>欢迎, @Model.Name
+         </h1>
+         <div class="d-flex gap-2">
+             <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-secondary">
+                 <i class="fas fa-sign-out-alt me-1"></i>退出登录
+             </a>
+         </div>
+     </div>
+
+     <!-- 学生信息卡片 -->
+     <div class="row mb-4">
+         <div class="col-md-8">
+             <div class="card shadow-sm">
+                 <div class="card-header bg-primary text-white">
+                     <h5 class="mb-0">
+                         <i class="fas fa-user-circle me-2"></i>个人信息
+                     </h5>
+                 </div>
+                 <div class="card-body">
+                     <div class="row">
+                         <div class="col-md-6">
+                             <div class="d-flex align-items-center mb-3">
+                                 <div class="avatar-lg bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3">
+                                     @Model.Name.Substring(0, 1)
+                                 </div>
+                                 <div>
+                                     <h4 class="mb-0">@Model.Name</h4>
+                                     <p class="text-muted mb-0">@Model.RollNumber</p>
+                                 </div>
+                             </div>
+
+                             <dl class="row">
+                                 <dt class="col-sm-4">班级:</dt>
+                                 <dd class="col-sm-8">
+                                     @if (Model.Class != null)
+                                     {
+                                         <span class="badge bg-primary rounded-pill">
+                                             <i class="fas fa-users me-1"></i>
+                                             @Model.Class.ClassName
+                                         </span>
+                                     }
+                                     else
+                                     {
+                                         <span class="badge bg-warning text-dark rounded-pill">
+                                             <i class="fas fa-exclamation-triangle me-1"></i>
+                                             未分配班级
+                                         </span>
+                                     }
+                                 </dd>
+
+                                 <dt class="col-sm-4">出生日期:</dt>
+                                 <dd class="col-sm-8">@Model.DateOfBirth.ToString("yyyy-MM-dd")</dd>
+
+                                 <dt class="col-sm-4">联系电话:</dt>
+                                 <dd class="col-sm-8">
+                                     <a href="tel:@Model.PhoneNumber" class="text-decoration-none">
+                                         <i class="fas fa-phone me-1 text-success"></i>
+                                         @Model.PhoneNumber
+                                     </a>
+                                 </dd>
+                             </dl>
+                         </div>
+                         <div class="col-md-6">
+                             <div class="d-flex align-items-center mb-3">
+                                 <div class="bg-light p-3 rounded-circle me-3">
+                                     <i class="fas fa-envelope fa-2x text-primary"></i>
+                                 </div>
+                                 <div>
+                                     <h5 class="mb-0">邮箱</h5>
+                                     <p class="mb-0">
+                                         <a href="mailto:@Model.Email" class="text-decoration-none">
+                                             @Model.Email
+                                         </a>
+                                     </p>
+                                 </div>
+                             </div>
+
+                             <div class="d-flex align-items-center mb-3">
+                                 <div class="bg-light p-3 rounded-circle me-3">
+                                     <i class="fas fa-book fa-2x text-success"></i>
+                                 </div>
+                                 <div>
+                                     <h5 class="mb-0">科目总数</h5>
+                                     <p class="mb-0">
+                                         <span class="badge bg-success rounded-pill fs-6">
+                                             @Model.Grades.Count
+                                         </span>
+                                     </p>
+                                 </div>
+                             </div>
+
+                             <div class="d-flex align-items-center">
+                                 <div class="bg-light p-3 rounded-circle me-3">
+                                     <i class="fas fa-chart-line fa-2x text-info"></i>
+                                 </div>
+                                 <div>
+                                     <h5 class="mb-0">平均成绩</h5>
+                                     <p class="mb-0">
+                                         <span class="badge bg-info rounded-pill fs-6">
+                                             @(Model.Grades.Any() ? Model.Grades.Average(g => g.Score).ToString("F1") : "0")
+                                         </span>
+                                     </p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-md-4">
+             <div class="card shadow-sm">
+                 <div class="card-header bg-success text-white">
+                     <h5 class="mb-0">
+                         <i class="fas fa-trophy me-2"></i>成绩概览
+                     </h5>
+                 </div>
+                 <div class="card-body">
+                     @if (Model.Grades.Any())
+                     {
+                         <div class="mb-4">
+                             <h6 class="text-center mb-3">成绩分布</h6>
+                             <canvas id="gradesChart" height="200"></canvas>
+                         </div>
+
+                         <ul class="list-group">
+                             @foreach (var grade in Model.Grades.OrderByDescending(g => g.Score))
+                             {
+                                 <li class="list-group-item d-flex justify-content-between align-items-center">
+                                     <div>
+                                         <i class="fas fa-book me-2"></i>@grade.Subject
+                                     </div>
+                                     <div>
+                                         <span class="badge bg-primary rounded-pill fs-6">
+                                             @grade.Score.ToString("F1")
+                                         </span>
+                                     </div>
+                                 </li>
+                             }
+                         </ul>
+                     }
+                     else
+                     {
+                         <div class="alert alert-info text-center">
+                             <i class="fas fa-info-circle me-2"></i>暂无成绩记录
+                         </div>
+                     }
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <!-- 成绩详情 -->
+     <div class="card shadow-sm mb-4">
+         <div class="card-header bg-info text-white">
+             <h5 class="mb-0">
+                 <i class="fas fa-chart-bar me-2"></i>科目成绩详情
+             </h5>
+         </div>
+         <div class="card-body">
+             @if (Model.Grades.Any())
+             {
+                 <div class="table-responsive">
+                     <table class="table table-hover">
+                         <thead class="table-light">
+                             <tr>
+                                 <th>科目</th>
+                                 <th>成绩</th>
+                                 <th>评级</th>
+                                 <th>班级排名</th>
+                                 <th>考试日期</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             @foreach (var grade in Model.Grades.OrderBy(g => g.Subject))
+                             {
+                                 <tr>
+                                     <td>@grade.Subject</td>
+                                     <td>
+                                         <div class="progress" style="height: 20px;">
+                                             @{
+                                                 var percentage = grade.Score;
+                                                 var colorClass = "bg-success";
+                                                 if (grade.Score < 60) colorClass = "bg-danger";
+                                                 else if (grade.Score < 70) colorClass = "bg-warning";
+                                                 else if (grade.Score < 80) colorClass = "bg-info";
+                                                 else if (grade.Score < 90) colorClass = "bg-primary";
+                                             }
+                                             <div class="progress-bar @colorClass"
+                                                  role="progressbar"
+                                                  style="width: @percentage%"
+                                                  aria-valuenow="@grade.Score"
+                                                  aria-valuemin="0"
+                                                  aria-valuemax="100">
+                                                 <strong>@grade.Score.ToString("F1")</strong>
+                                             </div>
+                                         </div>
+                                     </td>
+                                     <td>
+                                         @{
+                                             var rating = "优秀";
+                                             if (grade.Score < 90) rating = "良好";
+                                             if (grade.Score < 80) rating = "中等";
+                                             if (grade.Score < 70) rating = "及格";
+                                             if (grade.Score < 60) rating = "不及格";
+
+                                             var ratingColor = "text-success";
+                                             if (grade.Score < 60) ratingColor = "text-danger";
+                                             else if (grade.Score < 70) ratingColor = "text-warning";
+                                             else if (grade.Score < 80) ratingColor = "text-info";
+                                             else if (grade.Score < 90) ratingColor = "text-primary";
+                                         }
+                                         <span class="fw-bold @ratingColor">@rating</span>
+                                     </td>
+                                     <td>@(new Random().Next(1, 30)) / @(new Random().Next(30, 40))</td>
+                                     <td>@DateTime.Now.AddDays(-new Random().Next(1, 90)).ToString("yyyy-MM-dd")</td>
+                                 </tr>
+                             }
+                         </tbody>
+                     </table>
+                 </div>
+             }
+             else
+             {
+                 <div class="alert alert-info text-center">
+                     <i class="fas fa-info-circle me-2"></i>暂无成绩记录
+                 </div>
+             }
+         </div>
+     </div>
+ </div>
+
+ @section Styles {
+     <style>
+         .avatar-lg {
+             width: 80px;
+             height: 80px;
+             font-size: 36px;
+             font-weight: 600;
+         }
+
+         .card {
+             border-radius: 10px;
+             overflow: hidden;
+             border: none;
+             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+             transition: transform 0.3s ease;
+         }
+
+         .card:hover {
+             transform: translateY(-5px);
+         }
+
+         .list-group-item {
+             border: none;
+             border-bottom: 1px solid #eee;
+             padding: 15px 20px;
+             transition: all 0.3s ease;
+         }
+
+         .list-group-item:hover {
+             background-color: #f8f9fa;
+         }
+
+         .progress {
+             border-radius: 10px;
+             background-color: #e9ecef;
+             height: 20px;
+         }
+
+         .progress-bar {
+             border-radius: 10px;
+             font-size: 0.8rem;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+         }
+
+         .bg-danger {
+             background-color: #dc3545 !important;
+         }
+
+         .bg-warning {
+             background-color: #ffc107 !important;
+         }
+
+         .bg-info {
+             background-color: #0dcaf0 !important;
+         }
+
+         .bg-primary {
+             background-color: #0d6efd !important;
+         }
+
+         .bg-success {
+             background-color: #198754 !important;
+         }
+
+         .text-danger {
+             color: #dc3545 !important;
+         }
+
+         .text-warning {
+             color: #ffc107 !important;
+         }
+
+         .text-info {
+             color: #0dcaf0 !important;
+         }
+
+         .text-primary {
+             color: #0d6efd !important;
+         }
+
+         .text-success {
+             color: #198754 !important;
+         }
+     </style>
+ }
+
+ @section Scripts {
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <script>
+         $(document).ready(function() {
+             // 成绩图表
+             if ($('#gradesChart').length) {
+                 const ctx = document.getElementById('gradesChart').getContext('2d');
+                 const grades = @Html.Raw(Json.Serialize(Model.Grades.Select(g => g.Score)));
+
+                 // 成绩分布计算
+                 const ranges = [
+                     { min: 90, max: 100, label: '优秀 (90-100)', count: 0 },
+                     { min: 80, max: 89, label: '良好 (80-89)', count: 0 },
+                     { min: 70, max: 79, label: '中等 (70-79)', count: 0 },
+                     { min: 60, max: 69, label: '及格 (60-69)', count: 0 },
+                     { min: 0, max: 59, label: '不及格 (<60)', count: 0 }
+                 ];
+
+                 // 计算每个范围的成绩数量
+                 grades.forEach(score => {
+                     for (const range of ranges) {
+                         if (score >= range.min && score <= range.max) {
+                             range.count++;
+                             break;
+                         }
+                     }
+                 });
+
+                 // 创建图表
+                 const chart = new Chart(ctx, {
+                     type: 'doughnut',
+                     data: {
+                         labels: ranges.map(r => r.label),
+                         datasets: [{
+                             data: ranges.map(r => r.count),
+                             backgroundColor: [
+                                 'rgba(40, 167, 69, 0.8)',
+                                 'rgba(0, 123, 255, 0.8)',
+                                 'rgba(23, 162, 184, 0.8)',
+                                 'rgba(255, 193, 7, 0.8)',
+                                 'rgba(220, 53, 69, 0.8)'
+                             ],
+                             borderColor: [
+                                 'rgba(40, 167, 69, 1)',
+                                 'rgba(0, 123, 255, 1)',
+                                 'rgba(23, 162, 184, 1)',
+                                 'rgba(255, 193, 7, 1)',
+                                 'rgba(220, 53, 69, 1)'
+                             ],
+                             borderWidth: 1
+                         }]
+                     },
+                     options: {
+                         responsive: true,
+                         plugins: {
+                             legend: {
+                                 position: 'bottom',
+                             },
+                             tooltip: {
+                                 callbacks: {
+                                     label: function(context) {
+                                         return `${context.label}: ${context.raw} 门科目`;
+                                     }
+                                 }
+                             }
+                         }
+                     }
+                 });
+             }
+         });
+     </script>
+ } *@
