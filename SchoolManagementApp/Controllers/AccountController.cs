@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagementApp.Models;
@@ -34,28 +36,29 @@ namespace SchoolManagementApp.Controllers
 
             if (ModelState.IsValid)
             {
-                // 检查教师账户
+                // 教师账户（仍使用密码验证）
                 if (model.Username == "sys" && model.Password == "123456")
                 {
                     await SignInTeacher(model.Username);
-                    return RedirectToAction("Index", "Grade");
+                    return RedirectToAction("Index", "Home");
                 }
 
-                // 检查学生账户
+                // 学生账户（仅验证学号是否存在）
                 var student = await _context.Students
-                    .FirstOrDefaultAsync(s => s.RollNumber == model.Username && s.Password == model.Password);
+                    .FirstOrDefaultAsync(s => s.RollNumber == model.Username);
 
                 if (student != null)
                 {
                     await SignInStudent(student);
-                    return RedirectToAction("Index", "StudentHome");
+                    return RedirectToAction("Index", "StudentDashboard");
                 }
 
-                ModelState.AddModelError(string.Empty, "用户名或密码错误");
+                ModelState.AddModelError(string.Empty, "用户名不存在或密码错误");
             }
 
             return View(model);
         }
+
 
         // 退出登录
         [HttpPost]
@@ -65,7 +68,44 @@ namespace SchoolManagementApp.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
+        // AccountController.cs
 
+        // GET: /Account/ChangePassword
+        [Authorize(Roles = "Student")]  // 仅限学生访问
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        // POST: /Account/ChangePassword
+        //[HttpPost]
+        //[Authorize(Roles = "Student")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        //{
+        //    if (!ModelState.IsValid) return View(model);
+
+        //    var studentId = int.Parse(User.FindFirst("StudentId").Value);
+        //    var student = await _context.Students.FindAsync(studentId);
+        //    if (student == null) return NotFound();
+
+        //    // 验证当前密码
+        //    var passwordHasher = new PasswordHasher<Student>();
+        //    var result = passwordHasher.VerifyHashedPassword(student, student.PasswordHash, model.CurrentPassword);
+        //    if (result != PasswordVerificationResult.Success)
+        //    {
+        //        ModelState.AddModelError("CurrentPassword", "当前密码不正确。");
+        //        return View(model);
+        //    }
+
+        //    // 更新密码
+        //    student.PasswordHash = passwordHasher.HashPassword(student, model.NewPassword);
+        //    _context.Update(student);
+        //    await _context.SaveChangesAsync();
+
+        //    ViewBag.SuccessMessage = "密码修改成功！";
+        //    return View();
+        //}
         private async Task SignInTeacher(string username)
         {
             var claims = new List<Claim>

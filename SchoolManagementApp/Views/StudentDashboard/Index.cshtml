@@ -1,0 +1,45 @@
+﻿@model SchoolManagementApp.Controllers.StudentDashboardViewModel
+
+@{
+    ViewData["Title"] = "学生个人界面";
+}
+
+<h1>学生个人界面</h1>
+
+<h2>本班级学生</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>学号</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.ClassStudents)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.RollNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>自己的各科成绩</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>科目</th>
+            <th>分数</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grade in Model.Grades)
+        {
+            <tr>
+                <td>@grade.Subject</td>
+                <td>@grade.Score</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -10,8 +10,8 @@ using SchoolManagementApp.Models;
 namespace SchoolManagementApp.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20250615095252_init")]
-    partial class init
+    [Migration("20250615162200_iit")]
+    partial class iit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,6 +99,9 @@ namespace SchoolManagementApp.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")

@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagementApp.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SchoolManagementApp.Controllers
 {
+    [Authorize]
     public class StudentController : Controller
     {
         private readonly SchoolContext _context;
@@ -56,18 +60,32 @@ namespace SchoolManagementApp.Controllers
         }
 
         // POST: Student/Create
-        [HttpPost]
+        [HttpPost]  // 明确标记为POST请求
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentId,Name,RollNumber,DateOfBirth,Email,PhoneNumber,ClassId")] Student student)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(student);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                  
+
+                    _context.Add(student);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception ex)
+            {
+                // 记录详细错误日志
+                Console.WriteLine($"创建学生失败: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+
+                // 将错误信息传递给视图
+                ModelState.AddModelError(string.Empty, "创建学生时发生错误: " + ex.Message);
             }
 
-            // 重新加载班级列表
+            // 如果模型验证失败，重新加载班级列表并返回视图
             ViewBag.Classes = _context.Classes
                 .Select(c => new SelectListItem
                 {

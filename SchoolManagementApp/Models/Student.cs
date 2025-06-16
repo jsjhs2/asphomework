@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace SchoolManagementApp.Models
 {
@@ -33,10 +32,9 @@ namespace SchoolManagementApp.Models
 
         // 导航属性
         public Classes Class { get; set; }
-
-
-        [DataType(DataType.Password)]
-        [JsonIgnore] // 在JSON序列化时忽略此字段
-        public string Password { get; set; } = "123456"; // 默认密码
+        public string Password { get; set; }
+        
+        
+       
     }
 }

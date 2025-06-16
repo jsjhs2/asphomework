@@ -1,3 +1,5 @@
+// filePath:3qr/Startup.cs
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +23,19 @@ namespace SchoolManagementApp
         {
             services.AddControllersWithViews();
 
-            // 配置数据库上下文
+            // 配置数据库连接
             services.AddDbContext<SchoolContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolDatabase")));
             services.AddControllersWithViews()
-            .AddRazorRuntimeCompilation(); // 添加这行
+            .AddRazorRuntimeCompilation(); // 启用编译
+
+            // 添加身份验证服务
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(options =>
+               {
+                   options.LoginPath = "/Account/Login"; // 未授权时重定向到登录页面
+                   options.AccessDeniedPath = "/Home/AccessDenied"; // 访问被拒绝时的页面
+               });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,13 +55,14 @@ namespace SchoolManagementApp
 
             app.UseRouting();
 
+            app.UseAuthentication(); // 使用身份验证
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

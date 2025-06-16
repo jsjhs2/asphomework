@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagementApp.Models;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementApp.Controllers
 {
+    [Authorize]
     public class GradeController : Controller
     {
         private readonly SchoolContext _context;

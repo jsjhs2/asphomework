@@ -4,9 +4,11 @@ using SchoolManagementApp.Models;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SchoolManagementApp.Controllers
 {
+    [Authorize]
     public class ClassesController : Controller
     {
         private readonly SchoolContext _context;
