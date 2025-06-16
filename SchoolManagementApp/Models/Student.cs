@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementApp.Models
@@ -11,11 +12,12 @@ namespace SchoolManagementApp.Models
         [Required]
         [Display(Name = "姓名")]
         public string Name { get; set; }
-
+        [Display(Name = "性别")]
+        public string Gender { get; set; }
         [Required]
         [Display(Name = "学号")]
+        
         public string RollNumber { get; set; }
-
         [DataType(DataType.Date)]
         [Display(Name = "出生日期")]
         public DateTime DateOfBirth { get; set; }

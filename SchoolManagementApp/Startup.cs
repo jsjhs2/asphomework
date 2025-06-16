@@ -1,4 +1,5 @@
 // filePath:3qr/Startup.cs
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchoolManagementApp.Models;
+using SchoolManagementApp.Services;
 
 namespace SchoolManagementApp
 {
@@ -22,7 +24,8 @@ namespace SchoolManagementApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddScoped<IUserAuthenticationService, AuthenticationService>();
+            services.AddScoped<IUserAuthenticationService, AuthenticationService>();
             // 配置数据库连接
             services.AddDbContext<SchoolContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolDatabase")));
@@ -49,12 +52,10 @@ namespace SchoolManagementApp
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthentication(); // 使用身份验证
             app.UseAuthorization();
 

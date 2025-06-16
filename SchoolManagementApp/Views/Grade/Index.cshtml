@@ -10,11 +10,18 @@
         <h1 class="display-5 fw-bold text-primary">
             <i class="fas fa-chart-bar me-2"></i>@ViewData["Title"]
         </h1>
-        <a asp-action="Create" class="btn btn-success">
-            <i class="fas fa-plus-circle me-1"></i>添加新成绩
-        </a>
+        <div>
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus-circle me-1"></i>添加新成绩
+            </a>
+            <a asp-action="Export"
+               asp-route-classId="@Context.Request.Query["classId"]"
+               asp-route-subject="@Context.Request.Query["subject"]"
+               class="btn btn-secondary">
+                <i class="fas fa-download me-1"></i>导出成绩
+            </a>
+        </div>
     </div>
-
     <!-- 班级筛选面板 -->
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-light py-3">
@@ -249,9 +256,9 @@
             transition: transform 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+            .card:hover {
+                transform: translateY(-5px);
+            }
 
         .avatar-sm {
             width: 32px;
@@ -353,7 +360,7 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // 设置筛选表单的值
             const urlParams = new URLSearchParams(window.location.search);
             const classId = urlParams.get('classId');
@@ -369,10 +376,10 @@
 
             // 添加按钮动画
             $('.btn-success').hover(
-                function() {
+                function () {
                     $(this).find('i').addClass('fa-beat');
                 },
-                function() {
+                function () {
                     $(this).find('i').removeClass('fa-beat');
                 }
             );

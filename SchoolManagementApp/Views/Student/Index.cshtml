@@ -16,6 +16,12 @@
             <a asp-controller="Classes" asp-action="Create" class="btn btn-info">
                 <i class="fas fa-users me-1"></i>增加班级
             </a>
+            <!-- 修改为表单提交方式 -->
+            <form asp-action="Import" method="post" class="d-inline">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-file-import me-1"></i>批量导入
+                </button>
+            </form>
         </div>
     </div>
 
@@ -227,6 +233,35 @@
     </div>
 </div>
 
+<!-- 新增：批量导入成功提示模态框 -->
+<div class="modal fade" id="importSuccessModal" tabindex="-1" aria-labelledby="importSuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="importSuccessModalLabel">
+                    <i class="fas fa-check-circle me-2"></i>导入成功
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="lead">学生信息已成功导入！</p>
+                <div class="alert alert-success">
+                    <i class="fas fa-info-circle me-2"></i>
+                    共导入 <span id="importCount" class="fw-bold">0</span> 名学生，学号已自动分配。
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-1"></i>关闭
+                </button>
+                <a href="@Url.Action("Index", "Student")" class="btn btn-success">
+                    <i class="fas fa-refresh me-1"></i>刷新页面
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Styles {
     <style>
         .card {
@@ -295,6 +330,19 @@
             .btn-success:hover {
                 background-color: #157347;
                 border-color: #146c43;
+                transform: translateY(-2px);
+            }
+
+        /* 新增：批量导入按钮样式 */
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #0a58ca;
+                border-color: #0a53be;
                 transform: translateY(-2px);
             }
 
@@ -418,6 +466,14 @@
             const searchTerm = '@ViewBag.SearchTerm';
             if (searchTerm) {
                 performSearch(searchTerm);
+            }
+
+            // 新增：检查URL参数，显示导入成功模态框
+            const urlParams = new URLSearchParams(window.location.search);
+            const importCount = urlParams.get('importCount');
+            if (importCount) {
+                $('#importCount').text(importCount);
+                $('#importSuccessModal').modal('show');
             }
 
             // 执行搜索函数

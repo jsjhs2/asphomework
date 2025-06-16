@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SchoolManagementApp.Models
 {
@@ -13,6 +15,7 @@ namespace SchoolManagementApp.Models
         public DbSet<Student> Students { get; set; }
         public DbSet<Grade> Grades { get; set; }
 
+        public DbSet<User> Users { get; set; }
         // 添加 Classes 的 DbSet
         public DbSet<Classes> Classes { get; set; }
 
@@ -37,6 +40,23 @@ namespace SchoolManagementApp.Models
                 .HasOne(s => s.Class)
                 .WithMany(c => c.Students)
                 .HasForeignKey(s => s.ClassId);
+            modelBuilder.Entity<User>().HasData(
+       new User
+       {
+           UserId = 1,
+           Username = "sys",
+           PasswordHash = HashPassword("123456"), // 使用SHA256哈希的密码
+           Role = "Admin",
+           DisplayName = "系统管理员"
+       }
+   );
+        }
+        private string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(password);
+            var hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
         }
     }
 }

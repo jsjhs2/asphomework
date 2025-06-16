@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ClosedXML.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagementApp.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SchoolManagementApp.Controllers
@@ -185,7 +189,86 @@ namespace SchoolManagementApp.Controllers
 
             return View(grade);
         }
+        // GET: Grade/Export
+        
 
+        // 导出到Excel
+ 
+        
+
+        private string GetRating(decimal score)
+        {
+            if (score < 60) return "不及格";
+            if (score < 70) return "及格";
+            if (score < 80) return "中等";
+            if (score < 90) return "良好";
+            return "优秀";
+        }
+
+        // 导出到CSV
+        [HttpGet]
+        [Route("Grade/Export")]
+        public async Task<IActionResult> Export(int? classId, string subject)
+        {
+            // 获取所有成绩，包括学生和班级信息
+            var gradesQuery = _context.Grades
+                .Include(g => g.Student)
+                .ThenInclude(s => s.Class)
+                .AsQueryable();
+
+            // 应用班级筛选
+            if (classId.HasValue && classId.Value > 0)
+            {
+                gradesQuery = gradesQuery.Where(g => g.Student.ClassId == classId.Value);
+            }
+
+            // 应用科目筛选
+            if (!string.IsNullOrEmpty(subject))
+            {
+                gradesQuery = gradesQuery.Where(g => g.Subject == subject);
+            }
+
+            // 获取成绩列表
+            var grades = await gradesQuery.ToListAsync();
+
+            var csv = new StringBuilder();
+            csv.AppendLine("学生姓名,班级,科目,分数,评级");
+
+            foreach (var grade in grades)
+            {
+                var studentName = EscapeCsvValue(grade.Student.Name);
+                var className = grade.Student.Class != null ? EscapeCsvValue(grade.Student.Class.ClassName) : "未分配班级";
+                var subjectName = EscapeCsvValue(grade.Subject);
+                var score = grade.Score;
+                var rating = GetRating(score);
+
+                csv.AppendLine($"{studentName},{className},{subjectName},{score},{rating}");
+            }
+
+            // 使用带BOM的UTF-8编码
+            var encoding = new UTF8Encoding(true);
+            var bytes = encoding.GetBytes(csv.ToString());
+
+            var fileName = $"grades_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+            return File(bytes, "text/csv", fileName);
+        }
+
+        // 添加CSV值转义方法，处理包含逗号或引号的值
+        private string EscapeCsvValue(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            // 如果值包含逗号、引号或换行符，则用引号括起来
+            if (value.Contains(',') || value.Contains('"') || value.Contains('\n'))
+            {
+                // 双引号需要转义为两个双引号
+                value = value.Replace("\"", "\"\"");
+                return $"\"{value}\"";
+            }
+
+            return value;
+        }
         // POST: Grade/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

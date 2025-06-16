@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// Models/LoginViewModel.cs
+using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementApp.Models
 {
@@ -13,7 +14,7 @@ namespace SchoolManagementApp.Models
         [Display(Name = "密码")]
         public string Password { get; set; }
 
-        [Display(Name = "记住我")]
+        [Display(Name = "记住我?")]
         public bool RememberMe { get; set; }
     }
 }
