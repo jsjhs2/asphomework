@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchoolManagementApp.Helpers;
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -21,6 +22,16 @@ namespace SchoolManagementApp.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    UserId = 1,
+                    Username = "sys",
+                    PasswordHash = PasswordHasher.HashPassword("123456"), // 使用通用工具类
+                    Role = "Admin",
+                    DisplayName = "系统管理员"
+                }
+            );
             // 为Score属性指定精度
             modelBuilder.Entity<Grade>()
                 .Property(g => g.Score)
@@ -40,16 +51,7 @@ namespace SchoolManagementApp.Models
                 .HasOne(s => s.Class)
                 .WithMany(c => c.Students)
                 .HasForeignKey(s => s.ClassId);
-            modelBuilder.Entity<User>().HasData(
-       new User
-       {
-           UserId = 1,
-           Username = "sys",
-           PasswordHash = HashPassword("123456"), // 使用SHA256哈希的密码
-           Role = "Admin",
-           DisplayName = "系统管理员"
-       }
-   );
+            
         }
         private string HashPassword(string password)
         {

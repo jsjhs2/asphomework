@@ -13,10 +13,12 @@ namespace SchoolManagementApp.Controllers
     public class AccountController : Controller
     {
         private readonly IUserAuthenticationService _authService;
+        private readonly SchoolContext _context;
 
-        public AccountController(IUserAuthenticationService authService)
+        public AccountController(IUserAuthenticationService authService, SchoolContext context)
         {
             _authService = authService;
+            _context = context;
         }
 
         // GET: /Account/Login
@@ -59,14 +61,50 @@ namespace SchoolManagementApp.Controllers
         }
 
         // 退出登录
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Login));
+        }
+        // AccountController.cs
+        [HttpPost, ActionName("Logout")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogoutConfirmed()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(Login));
+        }
+        // GET: /Account/Register
+        public IActionResult Register()
+        {
+            return View();
         }
 
+        // POST: /Account/Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var hashedPassword = _authService.HashPassword(model.Password);
+                var newUser = new User
+                {
+                    Username = model.Username,
+                    PasswordHash = hashedPassword,
+                    Role = model.Role,
+                    DisplayName = model.DisplayName
+                };
+
+                _context.Users.Add(newUser);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View(model);
+        }
         private async Task SignInUser(User user, bool rememberMe)
         {
             var claims = new List<Claim>

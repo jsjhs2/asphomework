@@ -147,6 +147,16 @@ namespace SchoolManagementApp.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            DisplayName = "系统管理员",
+                            PasswordHash = "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+                            Role = "Admin",
+                            Username = "sys"
+                        });
                 });
 
             modelBuilder.Entity("SchoolManagementApp.Models.Grade", b =>

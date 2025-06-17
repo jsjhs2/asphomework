@@ -88,6 +88,11 @@ namespace SchoolManagementApp.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "DisplayName", "PasswordHash", "Role", "Username" },
+                values: new object[] { 1, "系统管理员", "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=", "Admin", "sys" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Grades_StudentId",
                 table: "Grades",

@@ -1,5 +1,7 @@
 ﻿// Services/AuthenticationService.cs
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SchoolManagementApp.Helpers;
 using SchoolManagementApp.Models;
 using System;
 using System.Security.Cryptography;
@@ -31,8 +33,8 @@ namespace SchoolManagementApp.Services
             if (user == null)
                 return null;
 
-            // 验证密码
-            var hashedInput = HashPassword(password);
+            // 使用通用的密码哈希工具类
+            var hashedInput = PasswordHasher.HashPassword(password);
             return hashedInput == user.PasswordHash ? user : null;
         }
 

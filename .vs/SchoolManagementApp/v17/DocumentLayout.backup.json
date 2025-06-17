@@ -3,23 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/SchoolManagementDB/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\migrations\\20250616155441_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\migrations\\20250616155441_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\obj\\Debug\\net5.0\\Razor\\Views\\Account\\Login.cshtml.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchoolManagementApp\\obj\\Debug\\net5.0\\Razor\\Views\\Account\\Login.cshtml.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\controllers\\classescontroller.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\controllers\\classescontroller.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\controllers\\gradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\controllers\\gradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\migrations\\20250617062032_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\migrations\\20250617062032_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\models\\schoolcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,20 +55,23 @@
       "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\models\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\models\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\models\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\controllers\\gradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\controllers\\gradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/SchoolManagementDB/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\controllers\\classescontroller.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\controllers\\classescontroller.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\models\\gradeexportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -68,10 +96,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\views\\student\\import.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\views\\student\\import.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|solutionrelative:schoolmanagementapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51FCA8F5-AE07-4744-9801-EB23EC923C71}|SchoolManagementApp\\SchoolManagementApp.csproj|c:\\users\\19786\\desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\schoolmanagementapp\\schoolmanagementapp\\views\\student\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -101,154 +125,148 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "dbo.Users [\u6570\u636E]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/SchoolManagementDB/True/SqlTable/dbo.Users.sql",
-              "ToolTip": "dbo.Users [\u6570\u636E]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-06-16T16:46:37.933Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "20250616155441_init.cs",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Migrations\\20250616155441_init.cs",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Migrations\\20250616155441_init.cs",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Migrations\\20250616155441_init.cs",
-              "RelativeToolTip": "SchoolManagementApp\\Migrations\\20250616155441_init.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T15:54:41.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SchoolContext.cs",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\SchoolContext.cs",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\SchoolContext.cs",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\SchoolContext.cs",
-              "RelativeToolTip": "SchoolManagementApp\\Models\\SchoolContext.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAmwA8AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T15:52:21.049Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ClassesController.cs.cs",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
-              "RelativeToolTip": "SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T09:14:25.424Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "SchoolManagementApp\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAwBsAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T15:42:35.518Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "SchoolManagementApp\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAiwKQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T15:46:06.731Z"
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\RegisterViewModel.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\RegisterViewModel.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Models\\RegisterViewModel.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAcwB0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T07:36:35.835Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "AuthenticationService.cs",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\AuthenticationService.cs",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\AuthenticationService.cs",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\AuthenticationService.cs",
-              "RelativeToolTip": "SchoolManagementApp\\Models\\AuthenticationService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBsAAAAoAAAAAAAAAA==",
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Controllers\\StudentController.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Controllers\\StudentController.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAowKEBAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T15:48:56.033Z"
+              "WhenOpened": "2025-06-17T06:25:10.887Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Startup.cs",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Startup.cs",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Startup.cs",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Startup.cs",
-              "RelativeToolTip": "SchoolManagementApp\\Startup.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAcwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T05:27:17.929Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\LoginViewModel.cs",
               "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\LoginViewModel.cs",
               "RelativeToolTip": "SchoolManagementApp\\Models\\LoginViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T15:47:53.141Z"
+              "WhenOpened": "2025-06-16T15:47:53.141Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "SchoolManagementApp\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAMwLMAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T15:46:06.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAIwIQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T15:42:35.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.cshtml.g.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\obj\\Debug\\net5.0\\Razor\\Views\\Account\\Login.cshtml.g.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\obj\\Debug\\net5.0\\Razor\\Views\\Account\\Login.cshtml.g.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\obj\\Debug\\net5.0\\Razor\\Views\\Account\\Login.cshtml.g.cs",
+              "RelativeToolTip": "SchoolManagementApp\\obj\\Debug\\net5.0\\Razor\\Views\\Account\\Login.cshtml.g.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAnwB8AAACCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T07:35:11.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SchoolManagementApp\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAqwB4AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-15T08:33:29.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "20250617062032_init.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Migrations\\20250617062032_init.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Migrations\\20250617062032_init.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Migrations\\20250617062032_init.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Migrations\\20250617062032_init.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T06:20:33.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T06:25:17.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\User.cs",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\User.cs",
               "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\User.cs",
               "RelativeToolTip": "SchoolManagementApp\\Models\\User.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA5wBwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAiwAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T15:47:31.221Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Grade\\Index.cshtml",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Grade\\Index.cshtml",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Grade\\Index.cshtml",
-              "RelativeToolTip": "SchoolManagementApp\\Views\\Grade\\Index.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAmwAwAAAANAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "SchoolManagementApp\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAF0AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T11:24:10.008Z"
+              "WhenOpened": "2025-06-17T06:29:32.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "GradeExportViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\GradeExportViewModel.cs",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\GradeExportViewModel.cs",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\GradeExportViewModel.cs",
-              "RelativeToolTip": "SchoolManagementApp\\Models\\GradeExportViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAswAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T11:22:57.583Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "GradeController.cs",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\GradeController.cs",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Controllers\\GradeController.cs",
@@ -260,7 +278,100 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\PasswordHasher.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\PasswordHasher.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Models\\PasswordHasher.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAqwBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T06:18:28.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AuthenticationService.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\AuthenticationService.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\AuthenticationService.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\AuthenticationService.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Models\\AuthenticationService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T15:48:56.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SchoolContext.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\SchoolContext.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\SchoolContext.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\SchoolContext.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Models\\SchoolContext.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA5wB0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T15:52:21.049Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Startup.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Startup.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Startup.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Startup.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAiwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T05:27:17.929Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ClassesController.cs.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Controllers\\ClassesController.cs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T09:14:25.424Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "dbo.Users.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/SchoolManagementDB/True/SqlTable/dbo.Users.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/SchoolManagementDB/True/SqlTable/dbo.Users.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-06-16T16:46:37.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Grade\\Index.cshtml",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Grade\\Index.cshtml",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Grade\\Index.cshtml",
+              "RelativeToolTip": "SchoolManagementApp\\Views\\Grade\\Index.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAmwAwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T11:24:10.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GradeExportViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\GradeExportViewModel.cs",
+              "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\GradeExportViewModel.cs",
+              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\GradeExportViewModel.cs",
+              "RelativeToolTip": "SchoolManagementApp\\Models\\GradeExportViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAswAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T11:22:57.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\Student.cs",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\Student.cs",
@@ -272,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 20,
               "Title": "GradeCreateViewModel.cs",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\GradeCreateViewModel.cs",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\GradeCreateViewModel.cs",
@@ -284,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 25,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Student\\Edit.cshtml",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Student\\Edit.cshtml",
@@ -296,19 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SchoolManagementApp\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-15T08:33:29.787Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 22,
               "Title": "Classes.cs",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\Classes.cs",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\Classes.cs",
@@ -320,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "Import.cshtml",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Student\\Import.cshtml",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Student\\Import.cshtml",
@@ -332,7 +431,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 24,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Student\\Delete.cshtml",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Student\\Delete.cshtml",
@@ -344,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Classes\\Create.cshtml",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Classes\\Create.cshtml",
@@ -356,7 +455,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Views\\Classes\\Index.cshtml",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Views\\Classes\\Index.cshtml",
@@ -368,7 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 28,
               "Title": "Grade.cs",
               "DocumentMoniker": "C:\\Users\\19786\\Desktop\\\u65B0\u5EFA\u6587\u4EF6\u5939 (2)\\SchoolManagementApp\\SchoolManagementApp\\Models\\Grade.cs",
               "RelativeDocumentMoniker": "SchoolManagementApp\\Models\\Grade.cs",

@@ -1,240 +1,321 @@
-﻿<!-- Views/Account/Login.cshtml -->
-@model SchoolManagementApp.Models.LoginViewModel
+﻿@model SchoolManagementApp.Models.LoginViewModel
 
 @{
-    ViewData["Title"] = "教师登录";
-    Layout = null; // 不使用布局
+    ViewData["Title"] = "学校管理系统 - 登录与注册";
+    Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>学校管理系统 - 教师登录</title>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #0d6efd;
-            --secondary-color: #6c757d;
-            --success-color: #198754;
-            --info-color: #0dcaf0;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#0FC6C2',
+                        neutral: '#F5F7FA',
+                        dark: '#1D2129',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
         }
-
-        body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            animation: fadeIn 0.6s ease;
-        }
-
-        .login-card {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            background: white;
-            transition: all 0.3s ease;
-        }
-
-        .login-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .login-header {
-            background: var(--primary-color);
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        .login-body {
-            padding: 30px;
-        }
-
-        .login-logo {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-
-        .login-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .login-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--dark-color);
-        }
-
-        .form-control {
-            border-radius: 8px;
-            padding: 12px 15px;
-            border: 1px solid #ced4da;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        }
-
-        .btn-login {
-            background: var(--primary-color);
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-login:hover {
-            background: #0b5ed7;
-            transform: translateY(-2px);
-        }
-
-        .login-footer {
-            text-align: center;
-            padding: 20px;
-            background: var(--light-color);
-            border-top: 1px solid #e9ecef;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .test-credentials {
-            background: #e9f7fe;
-            border-left: 4px solid var(--info-color);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        .test-credentials h6 {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--info-color);
-        }
-
-        .test-credentials ul {
-            padding-left: 20px;
-            margin-bottom: 0;
-        }
-
-        .test-credentials li {
-            margin-bottom: 5px;
-        }
-
-        @@keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+    </script>
+    <style type="text/tailwindcss">
+        @@layer utilities {
+            .content-auto {
+                content-visibility: auto;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .form-shadow {
+                box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+
+                .card-hover:hover {
+                    transform: translateY(-5px);
+                }
+
+            .tab-active {
+                @@apply border-b-2 border-primary text-primary;
+            }
+
+            .tab-inactive {
+                @@apply border-b-2 border-transparent text-gray-500 hover:text-gray-700 transition-all;
             }
         }
     </style>
 </head>
-<body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <div class="login-logo">
-                    <i class="fas fa-chalkboard-teacher"></i>
+<body class="bg-gradient-to-br from-blue-900 to-indigo-600 min-h-screen flex items-center justify-center p-4 font-inter">
+    <div class="w-full max-w-5xl">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+            <!-- 左侧信息面板 -->
+            <div class="w-full md:w-2/5 bg-primary p-8 md:p-12 text-white flex flex-col justify-between card-hover">
+                <div>
+                    <div class="text-4xl mb-6">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">学校管理系统</h2>
+                    <p class="text-white/80 mb-8">
+                        提供全面的学校管理解决方案，帮助教师和管理人员更高效地完成日常工作。
+                    </p>
                 </div>
-                <h1 class="login-title">学校管理系统</h1>
-                <p class="login-subtitle">教师登录</p>
+
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-user-circle"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">教师账户</h4>
+                            <p class="text-sm text-white/80">管理课程和学生信息</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">学生管理</h4>
+                            <p class="text-sm text-white/80">轻松查看和更新学生记录</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">课程安排</h4>
+                            <p class="text-sm text-white/80">高效规划和管理课程表</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-sm text-white/60">
+                    <p>&copy; 2025 学校管理系统 | 版权所有</p>
+                </div>
             </div>
 
-            <div class="login-body">
-                <form asp-action="Login" method="post">
-                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <!-- 右侧表单面板 -->
+            <div class="w-full md:w-3/5 p-8 md:p-12">
+                <div class="mb-8">
+                    <ul class="flex border-b">
+                        <li class="mr-8">
+                            <button id="login-tab" class="py-4 text-lg font-medium tab-active">
+                                登录
+                            </button>
+                        </li>
+                        <li>
+                            <button id="register-tab" class="py-4 text-lg font-medium tab-inactive">
+                                注册
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
-                    <div class="form-group">
-                        <label asp-for="Username" class="form-label">
-                            <i class="fas fa-user me-1"></i>用户名
-                        </label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            <input asp-for="Username" class="form-control" placeholder="请输入教师账号" />
+                <!-- 登录表单 -->
+                <div id="login-form" class="space-y-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">欢迎回来</h3>
+
+                    <form asp-action="Login" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="space-y-4">
+                            <div>
+                                <label asp-for="Username" class="block text-sm font-medium text-gray-700 mb-1">用户名</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa fa-user text-gray-400"></i>
+                                    </div>
+                                    <input asp-for="Username" type="text" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入用户名">
+                                </div>
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+
+                            <div>
+                                <label asp-for="Password" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa fa-lock text-gray-400"></i>
+                                    </div>
+                                    <input asp-for="Password" type="password" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入密码">
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input asp-for="RememberMe" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                    <label for="RememberMe" class="ml-2 block text-sm text-gray-700">记住我</label>
+                                </div>
+                                <div class="text-sm">
+                                    <a href="#" class="font-medium text-primary hover:text-primary/80">忘记密码?</a>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fa fa-sign-in-alt mr-2"></i>登录
+                            </button>
                         </div>
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
+                    </form>
 
-                    <div class="form-group">
-                        <label asp-for="Password" class="form-label">
-                            <i class="fas fa-lock me-1"></i>密码
-                        </label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input asp-for="Password" type="password" class="form-control" placeholder="请输入密码" />
-                        </div>
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group form-check">
-                        <input asp-for="RememberMe" class="form-check-input" />
-                        <label asp-for="RememberMe" class="form-check-label">记住我</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-login">
-                        <i class="fas fa-sign-in-alt me-1"></i>登录
-                    </button>
-
-                    <div class="test-credentials">
-                        <h6><i class="fas fa-info-circle me-1"></i>测试账户</h6>
-                        <ul>
-                            <li>教师账户: <strong>sys</strong> / 密码: <strong>123456</strong></li>
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                        <h4 class="font-medium text-blue-800 mb-2">测试账户</h4>
+                        <ul class="text-sm text-blue-700 space-y-1">
+                            <li>账户: <strong>sys</strong> / 密码: <strong>123456</strong></li>
+                            
                         </ul>
                     </div>
-                </form>
-            </div>
+                </div>
 
-            <div class="login-footer">
-                &copy; 2023 学校管理系统 | 版权所有
+                <!-- 注册表单 -->
+                <div id="register-form" class="space-y-6 hidden">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">创建新账户</h3>
+
+                    <!-- 使用单独的RegisterViewModel实例 -->
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">用户名</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa fa-user text-gray-400"></i>
+                                    </div>
+                                    <input type="text" id="RegisterViewModel_Username" name="Username" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入用户名">
+                                </div>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa fa-lock text-gray-400"></i>
+                                    </div>
+                                    <input type="password" id="RegisterViewModel_Password" name="Password" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入密码 (至少6个字符)">
+                                </div>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">确认密码</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa fa-lock text-gray-400"></i>
+                                    </div>
+                                    <input type="password" id="RegisterViewModel_ConfirmPassword" name="ConfirmPassword" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请再次输入密码">
+                                </div>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">角色</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa fa-user-circle text-gray-400"></i>
+                                    </div>
+                                    <select id="RegisterViewModel_Role" name="Role" class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all appearance-none bg-white">
+                                        <option value="Teacher">教师</option>
+                                        <option value="Admin">管理员</option>
+                                        <option value="Student">学生</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <i class="fa fa-chevron-down text-gray-400"></i>
+                                    </div>
+                                </div>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="Role" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">显示名称</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fa fa-signature text-gray-400"></i>
+                                    </div>
+                                    <input type="text" id="RegisterViewModel_DisplayName" name="DisplayName" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入显示名称">
+                                </div>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="DisplayName" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                                <i class="fa fa-user-plus mr-2"></i>注册
+                            </button>
+                        </div>
+                    }
+
+                    <div class="text-center text-sm text-gray-600">
+                        <p>点击注册，即表示你同意我们的<a href="#" class="text-primary hover:underline">服务条款</a>和<a href="#" class="text-primary hover:underline">隐私政策</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // 表单动画
-            $('form input').on('focus', function() {
-                $(this).parent().addClass('focused');
-            }).on('blur', function() {
-                $(this).parent().removeClass('focused');
+        // 标签切换功能
+        document.getElementById('login-tab').addEventListener('click', function () {
+            // 切换标签样式
+            this.classList.remove('tab-inactive');
+            this.classList.add('tab-active');
+            document.getElementById('register-tab').classList.remove('tab-active');
+            document.getElementById('register-tab').classList.add('tab-inactive');
+
+            // 显示登录表单，隐藏注册表单
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('register-form').classList.add('hidden');
+        });
+
+        document.getElementById('register-tab').addEventListener('click', function () {
+            // 切换标签样式
+            this.classList.remove('tab-inactive');
+            this.classList.add('tab-active');
+            document.getElementById('login-tab').classList.remove('tab-active');
+            document.getElementById('login-tab').classList.add('tab-inactive');
+
+            // 显示注册表单，隐藏登录表单
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-form').classList.remove('hidden');
+        });
+
+        // 表单输入动画
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('focused');
             });
+            input.addEventListener('blur', function () {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+
+        // 显示验证错误信息
+        document.addEventListener('DOMContentLoaded', function () {
+            const validationSummary = document.querySelector('.validation-summary-errors');
+            if (validationSummary) {
+                validationSummary.classList.add('alert', 'alert-danger', 'p-3', 'rounded-lg');
+            }
         });
     </script>
 </body>
