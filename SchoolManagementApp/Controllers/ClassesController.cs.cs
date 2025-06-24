@@ -28,6 +28,13 @@ namespace SchoolManagementApp.Controllers
             return View(classes);
         }
 
+        // GET: Classes/Manage
+        public async Task<IActionResult> Manage()
+        {
+            var classes = await _context.Classes.Include(c => c.Students).ToListAsync();
+            return View(classes);
+        }
+
         // GET: Classes/Create
         public IActionResult Create()
         {

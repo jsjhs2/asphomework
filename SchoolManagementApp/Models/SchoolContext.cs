@@ -20,6 +20,8 @@ namespace SchoolManagementApp.Models
         // 添加 Classes 的 DbSet
         public DbSet<Classes> Classes { get; set; }
 
+        public DbSet<Course> Courses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
@@ -52,6 +54,61 @@ namespace SchoolManagementApp.Models
                 .WithMany(c => c.Students)
                 .HasForeignKey(s => s.ClassId);
             
+            // 默认课程
+            modelBuilder.Entity<Course>().HasData(
+                new Course { CourseCode = "CS101", CourseName = "计算机基础", Department = "计算机学院", Credit = 3 },
+                new Course { CourseCode = "MATH201", CourseName = "高等数学", Department = "数学学院", Credit = 4 },
+                new Course { CourseCode = "ENG301", CourseName = "大学英语", Department = "外国语学院", Credit = 2 },
+                new Course { CourseCode = "PHY101", CourseName = "大学物理", Department = "物理学院", Credit = 3.5 },
+                new Course { CourseCode = "CHEM101", CourseName = "基础化学", Department = "化学学院", Credit = 3 },
+                new Course { CourseCode = "BIO101", CourseName = "生物科学", Department = "生命科学学院", Credit = 2.5 },
+                new Course { CourseCode = "HIST101", CourseName = "中国历史", Department = "历史学院", Credit = 2 },
+                new Course { CourseCode = "LAW101", CourseName = "法学导论", Department = "法学院", Credit = 2 },
+                new Course { CourseCode = "ART101", CourseName = "艺术鉴赏", Department = "艺术学院", Credit = 1.5 },
+                new Course { CourseCode = "PE101", CourseName = "体育", Department = "体育学院", Credit = 1 }
+            );
+
+            // 默认班级
+            modelBuilder.Entity<Classes>().HasData(
+                new Classes { ClassId = 1, ClassName = "计算机一班", ClassCode = "CS1", TeacherName = "张老师" },
+                new Classes { ClassId = 2, ClassName = "数学一班", ClassCode = "MATH1", TeacherName = "李老师" },
+                new Classes { ClassId = 3, ClassName = "英语一班", ClassCode = "ENG1", TeacherName = "王老师" },
+                new Classes { ClassId = 4, ClassName = "物理一班", ClassCode = "PHY1", TeacherName = "赵老师" },
+                new Classes { ClassId = 5, ClassName = "化学一班", ClassCode = "CHEM1", TeacherName = "钱老师" },
+                new Classes { ClassId = 6, ClassName = "生物一班", ClassCode = "BIO1", TeacherName = "孙老师" },
+                new Classes { ClassId = 7, ClassName = "历史一班", ClassCode = "HIST1", TeacherName = "周老师" },
+                new Classes { ClassId = 8, ClassName = "法学一班", ClassCode = "LAW1", TeacherName = "吴老师" },
+                new Classes { ClassId = 9, ClassName = "艺术一班", ClassCode = "ART1", TeacherName = "郑老师" },
+                new Classes { ClassId = 10, ClassName = "体育一班", ClassCode = "PE1", TeacherName = "王五" }
+            );
+
+            // 默认学生
+            modelBuilder.Entity<Student>().HasData(
+                new Student { StudentId = 1, Name = "小明", Gender = "男", RollNumber = "2023001", DateOfBirth = new DateTime(2005,1,1), ClassId = 1 },
+                new Student { StudentId = 2, Name = "小红", Gender = "女", RollNumber = "2023002", DateOfBirth = new DateTime(2005,2,2), ClassId = 2 },
+                new Student { StudentId = 3, Name = "小刚", Gender = "男", RollNumber = "2023003", DateOfBirth = new DateTime(2005,3,3), ClassId = 3 },
+                new Student { StudentId = 4, Name = "小丽", Gender = "女", RollNumber = "2023004", DateOfBirth = new DateTime(2005,4,4), ClassId = 4 },
+                new Student { StudentId = 5, Name = "小强", Gender = "男", RollNumber = "2023005", DateOfBirth = new DateTime(2005,5,5), ClassId = 5 },
+                new Student { StudentId = 6, Name = "小芳", Gender = "女", RollNumber = "2023006", DateOfBirth = new DateTime(2005,6,6), ClassId = 6 },
+                new Student { StudentId = 7, Name = "小军", Gender = "男", RollNumber = "2023007", DateOfBirth = new DateTime(2005,7,7), ClassId = 7 },
+                new Student { StudentId = 8, Name = "小燕", Gender = "女", RollNumber = "2023008", DateOfBirth = new DateTime(2005,8,8), ClassId = 8 },
+                new Student { StudentId = 9, Name = "小鹏", Gender = "男", RollNumber = "2023009", DateOfBirth = new DateTime(2005,9,9), ClassId = 9 },
+                new Student { StudentId = 10, Name = "小玉", Gender = "女", RollNumber = "2023010", DateOfBirth = new DateTime(2005,10,10), ClassId = 10 }
+            );
+
+            // 默认成绩
+            modelBuilder.Entity<Grade>().HasData(
+                new Grade { GradeId = 1, StudentId = 1, Subject = "计算机基础", Score = 85 },
+                new Grade { GradeId = 2, StudentId = 2, Subject = "高等数学", Score = 90 },
+                new Grade { GradeId = 3, StudentId = 3, Subject = "大学英语", Score = 88 },
+                new Grade { GradeId = 4, StudentId = 4, Subject = "大学物理", Score = 92 },
+                new Grade { GradeId = 5, StudentId = 5, Subject = "基础化学", Score = 80 },
+                new Grade { GradeId = 6, StudentId = 6, Subject = "生物科学", Score = 87 },
+                new Grade { GradeId = 7, StudentId = 7, Subject = "中国历史", Score = 78 },
+                new Grade { GradeId = 8, StudentId = 8, Subject = "法学导论", Score = 91 },
+                new Grade { GradeId = 9, StudentId = 9, Subject = "艺术鉴赏", Score = 95 },
+                new Grade { GradeId = 10, StudentId = 10, Subject = "体育", Score = 98 }
+            );
         }
         private string HashPassword(string password)
         {

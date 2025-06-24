@@ -1,31 +1,15 @@
 ﻿@{
     ViewData["Title"] = "首页";
 }
-
-<div class="text-center">
-    <h1 class="display-4">欢迎使用学生成绩管理系统</h1>
-    <p>请使用上方导航菜单管理学生信息和成绩记录</p>
-
-    <div class="mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">学生管理</h5>
-                        <p class="card-text">添加、编辑和删除学生信息</p>
-                        <a asp-controller="Student" asp-action="Index" class="btn btn-primary">管理学生</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">成绩管理</h5>
-                        <p class="card-text">添加、编辑和删除学生成绩</p>
-                        <a asp-controller="Grade" asp-action="Index" class="btn btn-primary">管理成绩</a>
-                    </div>
-                </div>
-            </div>
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
+    <div class="card shadow-lg p-5" style="max-width: 420px; width:100%; border-radius: 18px;">
+        <h2 class="mb-4 text-center text-primary fw-bold" style="letter-spacing:1px;">欢迎使用学生成绩管理系统</h2>
+        <p class="mb-4 text-center text-secondary">请通过左侧导航栏管理学生、班级和成绩信息。</p>
+        <div class="d-grid gap-3">
+            <a asp-controller="Student" asp-action="Index" class="btn btn-primary btn-lg">学生管理</a>
+            <a asp-controller="Classes" asp-action="Manage" class="btn btn-outline-primary btn-lg">班级管理</a>
+            <a asp-controller="Grade" asp-action="Index" class="btn btn-outline-primary btn-lg">成绩管理</a>
+            <a asp-controller="Courses" asp-action="Index" class="btn btn-outline-primary btn-lg">课程管理</a>
         </div>
     </div>
 </div>

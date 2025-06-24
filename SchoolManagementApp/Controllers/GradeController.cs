@@ -76,19 +76,26 @@ namespace SchoolManagementApp.Controllers
 
 
         // GET: Grade/Create
-        public IActionResult Create()
+        public IActionResult Create(int? classId = null)
         {
+            var classes = _context.Classes.ToList();
+            var students = classId.HasValue && classId.Value > 0
+                ? _context.Students.Where(s => s.ClassId == classId.Value).ToList()
+                : _context.Students.ToList();
+            var subjects = _context.Courses.Select(c => c.CourseName).Distinct().ToList();
             var model = new GradeCreateViewModel
             {
-                Students = _context.Students.ToList(),
+                ClassId = classId,
+                Classes = classes,
+                Students = students,
+                Subjects = subjects,
                 Grades = new List<GradeEntry>
                 {
-                    new GradeEntry(), // 第一门课
-                    new GradeEntry(), // 第二门课
-                    new GradeEntry()  // 第三门课
+                    new GradeEntry(),
+                    new GradeEntry(),
+                    new GradeEntry()
                 }
             };
-
             return View(model);
         }
 
@@ -107,16 +114,17 @@ namespace SchoolManagementApp.Controllers
                         Subject = gradeEntry.Subject,
                         Score = gradeEntry.Score
                     };
-
                     _context.Add(grade);
                 }
-
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            // 重新加载学生列表
-            model.Students = _context.Students.ToList();
+            // 重新加载班级、学生、科目列表
+            model.Classes = _context.Classes.ToList();
+            model.Students = model.ClassId.HasValue && model.ClassId.Value > 0
+                ? _context.Students.Where(s => s.ClassId == model.ClassId.Value).ToList()
+                : _context.Students.ToList();
+            model.Subjects = _context.Courses.Select(c => c.CourseName).Distinct().ToList();
             return View(model);
         }
 

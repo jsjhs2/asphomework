@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "添加学生成绩";
+    var classList = new SelectList(Model.Classes, "ClassId", "ClassName", Model.ClassId);
 }
 
 <div class="container mt-5">
@@ -14,9 +15,24 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Create" id="gradeForm">
+                    <!-- 班级选择区域 -->
+                    <form method="get" asp-action="Create" id="classForm">
+                        <div class="mb-4">
+                            <div class="form-group">
+                                <label class="form-label fw-bold">
+                                    <i class="fas fa-users me-1"></i>选择班级
+                                </label>
+                                <select name="classId" class="form-select form-select-lg" onchange="document.getElementById('classForm').submit();"
+                                        asp-items="@(new SelectList(Model.Classes, "ClassId", "ClassName", Model.ClassId))">
+                                    <option value="">-- 请选择班级 --</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- 成绩表单 -->
+                    <form asp-action="Create" id="gradeForm" method="post">
+                        <input type="hidden" name="ClassId" value="@Model.ClassId" />
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
-
                         <!-- 学生选择区域 -->
                         <div class="mb-4">
                             <div class="form-group">
@@ -30,7 +46,6 @@
                                 <span asp-validation-for="StudentId" class="text-danger"></span>
                             </div>
                         </div>
-
                         <!-- 成绩输入区域 -->
                         <div class="mb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -41,92 +56,42 @@
                                     <i class="fas fa-plus me-1"></i>添加课程
                                 </button>
                             </div>
-
                             <div id="coursesContainer">
                                 <!-- 初始三门课程 -->
-                                <div class="course-entry card mb-3">
-                                    <div class="card-body">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">科目</label>
-                                                    <input asp-for="Grades[0].Subject" class="form-control" placeholder="例如：数学" />
-                                                    <span asp-validation-for="Grades[0].Subject" class="text-danger"></span>
+                                @for (int i = 0; i < Model.Grades.Count; i++)
+                                {
+                                    <div class="course-entry card mb-3">
+                                        <div class="card-body">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">科目</label>
+                                                        <select name="Grades[@i].Subject" class="form-select subject-select"
+                                                                asp-items="@(new SelectList(Model.Subjects, Model.Grades[i].Subject))">
+                                                            <option value="">请选择科目</option>
+                                                        </select>
+                                                        <span asp-validation-for="Grades[@i].Subject" class="text-danger"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">分数</label>
-                                                    <input asp-for="Grades[0].Score" type="number" step="0.01" min="0" max="100"
-                                                           class="form-control" placeholder="0-100" />
-                                                    <span asp-validation-for="Grades[0].Score" class="text-danger"></span>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label">分数</label>
+                                                        <input name="Grades[@i].Score" type="number" step="0.01" min="0" max="100"
+                                                               class="form-control" placeholder="0-100" value="@Model.Grades[i].Score" />
+                                                        <span asp-validation-for="Grades[@i].Score" class="text-danger"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 d-flex align-items-end">
-                                                <button type="button" class="btn btn-danger remove-course" disabled>
-                                                    <i class="fas fa-times"></i>
-                                                </button>
+                                                <div class="col-md-2 d-flex align-items-end">
+                                                    <button type="button" class="btn btn-danger remove-course" @(i == 0 ? "disabled" : "")>
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="course-entry card mb-3">
-                                    <div class="card-body">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">科目</label>
-                                                    <input asp-for="Grades[1].Subject" class="form-control" placeholder="例如：英语" />
-                                                    <span asp-validation-for="Grades[1].Subject" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">分数</label>
-                                                    <input asp-for="Grades[1].Score" type="number" step="0.01" min="0" max="100"
-                                                           class="form-control" placeholder="0-100" />
-                                                    <span asp-validation-for="Grades[1].Score" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 d-flex align-items-end">
-                                                <button type="button" class="btn btn-danger remove-course">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="course-entry card mb-3">
-                                    <div class="card-body">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">科目</label>
-                                                    <input asp-for="Grades[2].Subject" class="form-control" placeholder="例如：物理" />
-                                                    <span asp-validation-for="Grades[2].Subject" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">分数</label>
-                                                    <input asp-for="Grades[2].Score" type="number" step="0.01" min="0" max="100"
-                                                           class="form-control" placeholder="0-100" />
-                                                    <span asp-validation-for="Grades[2].Score" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 d-flex align-items-end">
-                                                <button type="button" class="btn btn-danger remove-course">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
-
                         <div class="d-flex justify-content-between mt-4">
                             <a asp-action="Index" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left me-1"></i>返回列表
@@ -138,7 +103,6 @@
                     </form>
                 </div>
             </div>
-
             <div class="card shadow-sm mt-4">
                 <div class="card-body text-center">
                     <div class="d-flex flex-wrap justify-content-center gap-3">
@@ -165,15 +129,24 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script>
         $(document).ready(function() {
-            let courseCount = 3; // 初始课程数量
-
+            let courseCount = @Model.Grades.Count;
+            // 初始化select2
+            $('.subject-select').select2({
+                width: '100%',
+                placeholder: '请选择科目',
+                allowClear: true
+            });
             // 添加课程
             $('#addCourse').click(function() {
                 const newCourseIndex = courseCount++;
-
+                let subjectOptions = '';
+                @foreach (var subject in Model.Subjects) {
+                <text>subjectOptions += `<option value="@subject">@subject</option>`;</text>
+                }
                 const newCourse = `
                     <div class="course-entry card mb-3 animate__animated animate__fadeIn">
                         <div class="card-body">
@@ -181,7 +154,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">科目</label>
-                                        <input name="Grades[${newCourseIndex}].Subject" class="form-control" placeholder="例如：化学" />
+                                        <select name="Grades[${newCourseIndex}].Subject" class="form-select subject-select">
+                                            <option value="">请选择科目</option>
+                                            ${subjectOptions}
+                                        </select>
                                         <span class="text-danger field-validation-valid" data-valmsg-for="Grades[${newCourseIndex}].Subject" data-valmsg-replace="true"></span>
                                     </div>
                                 </div>
@@ -202,16 +178,19 @@
                         </div>
                     </div>
                 `;
-
                 $('#coursesContainer').append(newCourse);
                 updateRemoveButtons();
+                // 新增的select2初始化
+                $('#coursesContainer .subject-select').last().select2({
+                    width: '100%',
+                    placeholder: '请选择科目',
+                    allowClear: true
+                });
             });
-
             // 删除课程
             $(document).on('click', '.remove-course', function() {
                 if ($('.course-entry').length > 3) {
                     $(this).closest('.course-entry').addClass('animate__animated animate__fadeOut');
-
                     setTimeout(() => {
                         $(this).closest('.course-entry').remove();
                         updateRemoveButtons();
@@ -219,17 +198,15 @@
                     }, 500);
                 }
             });
-
             // 更新删除按钮状态
             function updateRemoveButtons() {
                 $('.remove-course').prop('disabled', false);
                 $('.course-entry:first-child .remove-course').prop('disabled', true);
             }
-
             // 重新索引课程（确保表单提交正确）
             function reindexCourses() {
                 $('.course-entry').each(function(index) {
-                    $(this).find('input').each(function() {
+                    $(this).find('input,select').each(function() {
                         const name = $(this).attr('name');
                         if (name) {
                             const newName = name.replace(/\[\d+\]/, `[${index}]`);
@@ -238,56 +215,6 @@
                     });
                 });
             }
-
-            // 表单提交验证
-            $('#gradeForm').on('submit', function(e) {
-                // 验证至少三门课程
-                const courseCount = $('.course-entry').length;
-                if (courseCount < 3) {
-                    e.preventDefault();
-                    showAlert('danger', '请至少添加三门课程成绩！');
-                    return;
-                }
-
-                // 验证所有课程是否填写
-                let hasEmpty = false;
-                $('.course-entry').each(function() {
-                    const subject = $(this).find('input[name$="Subject"]').val();
-                    const score = $(this).find('input[name$="Score"]').val();
-
-                    if (!subject || !score) {
-                        hasEmpty = true;
-                        $(this).addClass('border-danger');
-                    } else {
-                        $(this).removeClass('border-danger');
-                    }
-                });
-
-                if (hasEmpty) {
-                    e.preventDefault();
-                    showAlert('danger', '请填写所有课程信息！');
-                }
-            });
-
-            // 显示提示信息
-            function showAlert(type, message) {
-                const alert = `
-                    <div class="alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3 animate__animated animate__shakeX" role="alert">
-                        <i class="fas fa-exclamation-circle me-2"></i>${message}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                `;
-
-                $('body').append(alert);
-
-                // 5秒后自动消失
-                setTimeout(() => {
-                    $('.alert').alert('close');
-                }, 5000);
-            }
-
-            // 初始化
-            updateRemoveButtons();
         });
     </script>
 

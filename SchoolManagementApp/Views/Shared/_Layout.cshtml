@@ -15,38 +15,43 @@
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">成绩管理系统</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Student" asp-action="Index">学生管理</a>
+    <div class="container-fluid">
+        <div class="row min-vh-100">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4 border-end">
+                <div class="sidebar-sticky">
+                    <a class="d-block text-decoration-none mb-4" asp-controller="Home" asp-action="Index">
+                        <div class="fw-bold fs-4 text-primary text-center" style="letter-spacing:1px;">成绩管理系统</div>
+                    </a>
+                    <ul class="nav flex-column mb-4">
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-dark" asp-controller="Student" asp-action="Index"><i class="fas fa-user-graduate me-2"></i>学生管理</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Grade" asp-action="Index">成绩管理</a>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-dark" asp-controller="Classes" asp-action="Manage"><i class="fas fa-school me-2"></i>班级管理</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-dark" asp-controller="Grade" asp-action="Index"><i class="fas fa-clipboard-list me-2"></i>成绩管理</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-dark" asp-controller="Courses" asp-action="Index"><i class="fas fa-book me-2"></i>课程管理</a>
                         </li>
                     </ul>
-                    <!-- 添加登录/退出导航项 -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="nav flex-column mt-auto">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-user"></i> @User.Identity.Name
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <form asp-controller="Account" asp-action="Logout" method="post" class="dropdown-item">
-                                        <button type="submit" class="btn btn-link text-dark p-0">
-                                            <i class="fa fa-sign-out"></i> 退出登录
-                                        </button>
-                                    </form>
-                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post" class="dropdown-item">
+                                            <button type="submit" class="btn btn-link text-dark p-0">
+                                                <i class="fa fa-sign-out"></i> 退出登录
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else
@@ -59,42 +64,34 @@
                         }
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <!-- 添加全局消息提示 -->
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                @TempData["SuccessMessage"]
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                @TempData["ErrorMessage"]
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            </nav>
+            <main role="main" class="col-md-10 ms-sm-auto px-4">
+                <!-- 添加全局消息提示 -->
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <div class="pt-4 pb-3">
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer text-muted mt-auto">
+        <div class="container-fluid text-center py-2">
             &copy; 2025 - 学生成绩管理系统
         </div>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

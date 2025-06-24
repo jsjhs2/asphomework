@@ -13,6 +13,10 @@ namespace SchoolManagementApp.Models
 
         [MinLength(3, ErrorMessage = "请至少添加三门课程成绩")]
         public List<GradeEntry> Grades { get; set; } = new List<GradeEntry>();
+
+        public int? ClassId { get; set; }
+        public List<Classes> Classes { get; set; } = new List<Classes>();
+        public List<string> Subjects { get; set; } = new List<string>();
     }
 
     public class GradeEntry

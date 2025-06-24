@@ -1,0 +1,44 @@
+@model SchoolManagementApp.Models.Course
+@{
+    ViewData["Title"] = "添加课程";
+}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i>@ViewData["Title"]</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div class="mb-3">
+                            <label asp-for="CourseCode" class="form-label"></label>
+                            <input asp-for="CourseCode" class="form-control" />
+                            <span asp-validation-for="CourseCode" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CourseName" class="form-label"></label>
+                            <input asp-for="CourseName" class="form-control" />
+                            <span asp-validation-for="CourseName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Department" class="form-label"></label>
+                            <input asp-for="Department" class="form-control" />
+                            <span asp-validation-for="Department" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Credit" class="form-label"></label>
+                            <input asp-for="Credit" class="form-control" />
+                            <span asp-validation-for="Credit" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success">保存</button>
+                        <a asp-action="Index" class="btn btn-secondary ms-2">返回</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 
