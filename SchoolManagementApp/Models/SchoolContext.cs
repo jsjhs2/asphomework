@@ -98,16 +98,75 @@ namespace SchoolManagementApp.Models
 
             // 默认成绩
             modelBuilder.Entity<Grade>().HasData(
+                // 小明的成绩
                 new Grade { GradeId = 1, StudentId = 1, Subject = "计算机基础", Score = 85 },
-                new Grade { GradeId = 2, StudentId = 2, Subject = "高等数学", Score = 90 },
-                new Grade { GradeId = 3, StudentId = 3, Subject = "大学英语", Score = 88 },
-                new Grade { GradeId = 4, StudentId = 4, Subject = "大学物理", Score = 92 },
-                new Grade { GradeId = 5, StudentId = 5, Subject = "基础化学", Score = 80 },
-                new Grade { GradeId = 6, StudentId = 6, Subject = "生物科学", Score = 87 },
-                new Grade { GradeId = 7, StudentId = 7, Subject = "中国历史", Score = 78 },
-                new Grade { GradeId = 8, StudentId = 8, Subject = "法学导论", Score = 91 },
-                new Grade { GradeId = 9, StudentId = 9, Subject = "艺术鉴赏", Score = 95 },
-                new Grade { GradeId = 10, StudentId = 10, Subject = "体育", Score = 98 }
+                new Grade { GradeId = 2, StudentId = 1, Subject = "高等数学", Score = 78 },
+                new Grade { GradeId = 3, StudentId = 1, Subject = "大学英语", Score = 92 },
+                new Grade { GradeId = 4, StudentId = 1, Subject = "大学物理", Score = 88 },
+                new Grade { GradeId = 5, StudentId = 1, Subject = "体育", Score = 95 },
+                
+                // 小红的成绩
+                new Grade { GradeId = 6, StudentId = 2, Subject = "高等数学", Score = 90 },
+                new Grade { GradeId = 7, StudentId = 2, Subject = "大学英语", Score = 85 },
+                new Grade { GradeId = 8, StudentId = 2, Subject = "大学物理", Score = 87 },
+                new Grade { GradeId = 9, StudentId = 2, Subject = "基础化学", Score = 93 },
+                new Grade { GradeId = 10, StudentId = 2, Subject = "体育", Score = 88 },
+                
+                // 小刚的成绩
+                new Grade { GradeId = 11, StudentId = 3, Subject = "大学英语", Score = 88 },
+                new Grade { GradeId = 12, StudentId = 3, Subject = "高等数学", Score = 82 },
+                new Grade { GradeId = 13, StudentId = 3, Subject = "大学物理", Score = 75 },
+                new Grade { GradeId = 14, StudentId = 3, Subject = "基础化学", Score = 89 },
+                new Grade { GradeId = 15, StudentId = 3, Subject = "体育", Score = 92 },
+                
+                // 小丽的成绩
+                new Grade { GradeId = 16, StudentId = 4, Subject = "大学物理", Score = 92 },
+                new Grade { GradeId = 17, StudentId = 4, Subject = "高等数学", Score = 88 },
+                new Grade { GradeId = 18, StudentId = 4, Subject = "大学英语", Score = 85 },
+                new Grade { GradeId = 19, StudentId = 4, Subject = "基础化学", Score = 90 },
+                new Grade { GradeId = 20, StudentId = 4, Subject = "体育", Score = 87 },
+                
+                // 小强的成绩
+                new Grade { GradeId = 21, StudentId = 5, Subject = "基础化学", Score = 80 },
+                new Grade { GradeId = 22, StudentId = 5, Subject = "高等数学", Score = 85 },
+                new Grade { GradeId = 23, StudentId = 5, Subject = "大学英语", Score = 78 },
+                new Grade { GradeId = 24, StudentId = 5, Subject = "大学物理", Score = 82 },
+                new Grade { GradeId = 25, StudentId = 5, Subject = "体育", Score = 90 },
+                
+                // 小芳的成绩
+                new Grade { GradeId = 26, StudentId = 6, Subject = "生物科学", Score = 87 },
+                new Grade { GradeId = 27, StudentId = 6, Subject = "高等数学", Score = 83 },
+                new Grade { GradeId = 28, StudentId = 6, Subject = "大学英语", Score = 91 },
+                new Grade { GradeId = 29, StudentId = 6, Subject = "基础化学", Score = 89 },
+                new Grade { GradeId = 30, StudentId = 6, Subject = "体育", Score = 85 },
+                
+                // 小军的成绩
+                new Grade { GradeId = 31, StudentId = 7, Subject = "中国历史", Score = 78 },
+                new Grade { GradeId = 32, StudentId = 7, Subject = "高等数学", Score = 72 },
+                new Grade { GradeId = 33, StudentId = 7, Subject = "大学英语", Score = 85 },
+                new Grade { GradeId = 34, StudentId = 7, Subject = "大学物理", Score = 68 },
+                new Grade { GradeId = 35, StudentId = 7, Subject = "体育", Score = 88 },
+                
+                // 小燕的成绩
+                new Grade { GradeId = 36, StudentId = 8, Subject = "法学导论", Score = 91 },
+                new Grade { GradeId = 37, StudentId = 8, Subject = "高等数学", Score = 86 },
+                new Grade { GradeId = 38, StudentId = 8, Subject = "大学英语", Score = 89 },
+                new Grade { GradeId = 39, StudentId = 8, Subject = "中国历史", Score = 94 },
+                new Grade { GradeId = 40, StudentId = 8, Subject = "体育", Score = 82 },
+                
+                // 小鹏的成绩
+                new Grade { GradeId = 41, StudentId = 9, Subject = "艺术鉴赏", Score = 95 },
+                new Grade { GradeId = 42, StudentId = 9, Subject = "高等数学", Score = 79 },
+                new Grade { GradeId = 43, StudentId = 9, Subject = "大学英语", Score = 87 },
+                new Grade { GradeId = 44, StudentId = 9, Subject = "中国历史", Score = 92 },
+                new Grade { GradeId = 45, StudentId = 9, Subject = "体育", Score = 89 },
+                
+                // 小玉的成绩
+                new Grade { GradeId = 46, StudentId = 10, Subject = "体育", Score = 98 },
+                new Grade { GradeId = 47, StudentId = 10, Subject = "高等数学", Score = 84 },
+                new Grade { GradeId = 48, StudentId = 10, Subject = "大学英语", Score = 86 },
+                new Grade { GradeId = 49, StudentId = 10, Subject = "大学物理", Score = 80 },
+                new Grade { GradeId = 50, StudentId = 10, Subject = "基础化学", Score = 88 }
             );
         }
         private string HashPassword(string password)

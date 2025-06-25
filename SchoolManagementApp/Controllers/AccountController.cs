@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementApp.Models;
 using SchoolManagementApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace SchoolManagementApp.Controllers
 
             if (ModelState.IsValid)
             {
-                // 验证用户
+                // 首先尝试作为普通用户登录
                 var user = await _authService.AuthenticateUser(model.Username, model.Password);
 
                 if (user != null)
@@ -51,6 +52,23 @@ namespace SchoolManagementApp.Controllers
                     else
                     {
                         return RedirectToAction("Index", "Home");
+                    }
+                }
+                
+                // 如果普通用户登录失败，尝试作为学生登录
+                var student = await _authService.AuthenticateStudent(model.Username, model.Password);
+
+                if (student != null)
+                {
+                    await SignInStudent(student, model.RememberMe);
+
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "StudentDashboard");
                     }
                 }
 
@@ -113,6 +131,32 @@ namespace SchoolManagementApp.Controllers
                 new Claim(ClaimTypes.Role, user.Role),
                 new Claim("UserId", user.UserId.ToString()),
                 new Claim("DisplayName", user.DisplayName ?? user.Username)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = rememberMe,
+                ExpiresUtc = rememberMe ? System.DateTimeOffset.UtcNow.AddDays(30) : System.DateTimeOffset.UtcNow.AddHours(8)
+            };
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+        }
+
+        private async Task SignInStudent(Student student, bool rememberMe)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, student.RollNumber),
+                new Claim(ClaimTypes.Role, "Student"),
+                new Claim("StudentId", student.StudentId.ToString()),
+                new Claim("DisplayName", student.Name),
+                new Claim("ClassId", student.ClassId.ToString())
             };
 
             var claimsIdentity = new ClaimsIdentity(

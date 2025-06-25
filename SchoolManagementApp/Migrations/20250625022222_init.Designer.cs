@@ -10,7 +10,7 @@ using SchoolManagementApp.Models;
 namespace SchoolManagementApp.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20250624160332_init")]
+    [Migration("20250625022222_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,7 +61,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 1,
                             ClassCode = "CS1",
                             ClassName = "计算机一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 453, DateTimeKind.Local).AddTicks(8359),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 537, DateTimeKind.Local).AddTicks(2814),
                             TeacherName = "张老师"
                         },
                         new
@@ -69,7 +69,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 2,
                             ClassCode = "MATH1",
                             ClassName = "数学一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1925),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(978),
                             TeacherName = "李老师"
                         },
                         new
@@ -77,7 +77,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 3,
                             ClassCode = "ENG1",
                             ClassName = "英语一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1945),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(991),
                             TeacherName = "王老师"
                         },
                         new
@@ -85,7 +85,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 4,
                             ClassCode = "PHY1",
                             ClassName = "物理一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1949),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(993),
                             TeacherName = "赵老师"
                         },
                         new
@@ -93,7 +93,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 5,
                             ClassCode = "CHEM1",
                             ClassName = "化学一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1951),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(994),
                             TeacherName = "钱老师"
                         },
                         new
@@ -101,7 +101,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 6,
                             ClassCode = "BIO1",
                             ClassName = "生物一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1953),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(996),
                             TeacherName = "孙老师"
                         },
                         new
@@ -109,7 +109,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 7,
                             ClassCode = "HIST1",
                             ClassName = "历史一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1954),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(997),
                             TeacherName = "周老师"
                         },
                         new
@@ -117,7 +117,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 8,
                             ClassCode = "LAW1",
                             ClassName = "法学一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1957),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(998),
                             TeacherName = "吴老师"
                         },
                         new
@@ -125,7 +125,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 9,
                             ClassCode = "ART1",
                             ClassName = "艺术一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1960),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(999),
                             TeacherName = "郑老师"
                         },
                         new
@@ -133,7 +133,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 10,
                             ClassCode = "PE1",
                             ClassName = "体育一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1970),
+                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(1000),
                             TeacherName = "王五"
                         });
                 });
@@ -266,65 +266,345 @@ namespace SchoolManagementApp.Migrations
                         new
                         {
                             GradeId = 2,
+                            Score = 78m,
+                            StudentId = 1,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 3,
+                            Score = 92m,
+                            StudentId = 1,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 4,
+                            Score = 88m,
+                            StudentId = 1,
+                            Subject = "大学物理"
+                        },
+                        new
+                        {
+                            GradeId = 5,
+                            Score = 95m,
+                            StudentId = 1,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 6,
                             Score = 90m,
                             StudentId = 2,
                             Subject = "高等数学"
                         },
                         new
                         {
-                            GradeId = 3,
+                            GradeId = 7,
+                            Score = 85m,
+                            StudentId = 2,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 8,
+                            Score = 87m,
+                            StudentId = 2,
+                            Subject = "大学物理"
+                        },
+                        new
+                        {
+                            GradeId = 9,
+                            Score = 93m,
+                            StudentId = 2,
+                            Subject = "基础化学"
+                        },
+                        new
+                        {
+                            GradeId = 10,
+                            Score = 88m,
+                            StudentId = 2,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 11,
                             Score = 88m,
                             StudentId = 3,
                             Subject = "大学英语"
                         },
                         new
                         {
-                            GradeId = 4,
+                            GradeId = 12,
+                            Score = 82m,
+                            StudentId = 3,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 13,
+                            Score = 75m,
+                            StudentId = 3,
+                            Subject = "大学物理"
+                        },
+                        new
+                        {
+                            GradeId = 14,
+                            Score = 89m,
+                            StudentId = 3,
+                            Subject = "基础化学"
+                        },
+                        new
+                        {
+                            GradeId = 15,
+                            Score = 92m,
+                            StudentId = 3,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 16,
                             Score = 92m,
                             StudentId = 4,
                             Subject = "大学物理"
                         },
                         new
                         {
-                            GradeId = 5,
+                            GradeId = 17,
+                            Score = 88m,
+                            StudentId = 4,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 18,
+                            Score = 85m,
+                            StudentId = 4,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 19,
+                            Score = 90m,
+                            StudentId = 4,
+                            Subject = "基础化学"
+                        },
+                        new
+                        {
+                            GradeId = 20,
+                            Score = 87m,
+                            StudentId = 4,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 21,
                             Score = 80m,
                             StudentId = 5,
                             Subject = "基础化学"
                         },
                         new
                         {
-                            GradeId = 6,
+                            GradeId = 22,
+                            Score = 85m,
+                            StudentId = 5,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 23,
+                            Score = 78m,
+                            StudentId = 5,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 24,
+                            Score = 82m,
+                            StudentId = 5,
+                            Subject = "大学物理"
+                        },
+                        new
+                        {
+                            GradeId = 25,
+                            Score = 90m,
+                            StudentId = 5,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 26,
                             Score = 87m,
                             StudentId = 6,
                             Subject = "生物科学"
                         },
                         new
                         {
-                            GradeId = 7,
+                            GradeId = 27,
+                            Score = 83m,
+                            StudentId = 6,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 28,
+                            Score = 91m,
+                            StudentId = 6,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 29,
+                            Score = 89m,
+                            StudentId = 6,
+                            Subject = "基础化学"
+                        },
+                        new
+                        {
+                            GradeId = 30,
+                            Score = 85m,
+                            StudentId = 6,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 31,
                             Score = 78m,
                             StudentId = 7,
                             Subject = "中国历史"
                         },
                         new
                         {
-                            GradeId = 8,
+                            GradeId = 32,
+                            Score = 72m,
+                            StudentId = 7,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 33,
+                            Score = 85m,
+                            StudentId = 7,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 34,
+                            Score = 68m,
+                            StudentId = 7,
+                            Subject = "大学物理"
+                        },
+                        new
+                        {
+                            GradeId = 35,
+                            Score = 88m,
+                            StudentId = 7,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 36,
                             Score = 91m,
                             StudentId = 8,
                             Subject = "法学导论"
                         },
                         new
                         {
-                            GradeId = 9,
+                            GradeId = 37,
+                            Score = 86m,
+                            StudentId = 8,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 38,
+                            Score = 89m,
+                            StudentId = 8,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 39,
+                            Score = 94m,
+                            StudentId = 8,
+                            Subject = "中国历史"
+                        },
+                        new
+                        {
+                            GradeId = 40,
+                            Score = 82m,
+                            StudentId = 8,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 41,
                             Score = 95m,
                             StudentId = 9,
                             Subject = "艺术鉴赏"
                         },
                         new
                         {
-                            GradeId = 10,
+                            GradeId = 42,
+                            Score = 79m,
+                            StudentId = 9,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 43,
+                            Score = 87m,
+                            StudentId = 9,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 44,
+                            Score = 92m,
+                            StudentId = 9,
+                            Subject = "中国历史"
+                        },
+                        new
+                        {
+                            GradeId = 45,
+                            Score = 89m,
+                            StudentId = 9,
+                            Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 46,
                             Score = 98m,
                             StudentId = 10,
                             Subject = "体育"
+                        },
+                        new
+                        {
+                            GradeId = 47,
+                            Score = 84m,
+                            StudentId = 10,
+                            Subject = "高等数学"
+                        },
+                        new
+                        {
+                            GradeId = 48,
+                            Score = 86m,
+                            StudentId = 10,
+                            Subject = "大学英语"
+                        },
+                        new
+                        {
+                            GradeId = 49,
+                            Score = 80m,
+                            StudentId = 10,
+                            Subject = "大学物理"
+                        },
+                        new
+                        {
+                            GradeId = 50,
+                            Score = 88m,
+                            StudentId = 10,
+                            Subject = "基础化学"
                         });
                 });
 

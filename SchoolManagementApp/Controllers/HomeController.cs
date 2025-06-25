@@ -18,6 +18,10 @@ namespace SchoolManagementApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("Index", "StudentDashboard");
+            }
             var classes = await _context.Classes.Include(c => c.Students).ToListAsync();
             return View(classes);
         }

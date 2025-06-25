@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagementApp.Models;
-using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SchoolManagementApp.Controllers
@@ -20,32 +20,44 @@ namespace SchoolManagementApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // 获取当前登录学生ID
-            var studentId = int.Parse(User.FindFirst("StudentId").Value);
+            // 获取当前登录学生的ID
+            var studentIdClaim = User.FindFirst("StudentId");
+            if (studentIdClaim == null || !int.TryParse(studentIdClaim.Value, out int studentId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
-            var student = await _context.Students
+            // 获取当前学生信息
+            var currentStudent = await _context.Students
                 .Include(s => s.Class)
                 .FirstOrDefaultAsync(s => s.StudentId == studentId);
 
-            if (student == null)
+            if (currentStudent == null)
             {
-                return NotFound();
+                return RedirectToAction("Login", "Account");
             }
 
-            // 获取本班级学生
-            var classStudents = await _context.Students
-                .Where(s => s.ClassId == student.ClassId)
+            // 获取同班级的学生
+            var classmates = await _context.Students
+                .Where(s => s.ClassId == currentStudent.ClassId && s.StudentId != studentId)
+                .OrderBy(s => s.Name)
                 .ToListAsync();
 
-            // 获取自己的各科成绩
+            // 获取当前学生的成绩
             var grades = await _context.Grades
                 .Where(g => g.StudentId == studentId)
+                .OrderBy(g => g.Subject)
                 .ToListAsync();
+
+            // 计算平均分
+            var averageScore = grades.Any() ? grades.Average(g => g.Score) : 0;
 
             var viewModel = new StudentDashboardViewModel
             {
-                ClassStudents = classStudents,
-                Grades = grades
+                CurrentStudent = currentStudent,
+                Classmates = classmates,
+                Grades = grades,
+                AverageScore = averageScore
             };
 
             return View(viewModel);
@@ -54,7 +66,9 @@ namespace SchoolManagementApp.Controllers
 
     public class StudentDashboardViewModel
     {
-        public List<Student> ClassStudents { get; set; }
-        public List<Grade> Grades { get; set; }
+        public Student CurrentStudent { get; set; }
+        public System.Collections.Generic.List<Student> Classmates { get; set; }
+        public System.Collections.Generic.List<Grade> Grades { get; set; }
+        public decimal AverageScore { get; set; }
     }
 }

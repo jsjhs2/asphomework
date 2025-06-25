@@ -1,15 +1,344 @@
-﻿@{
-    ViewData["Title"] = "首页";
-}
-<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
-    <div class="card shadow-lg p-5" style="max-width: 420px; width:100%; border-radius: 18px;">
-        <h2 class="mb-4 text-center text-primary fw-bold" style="letter-spacing:1px;">欢迎使用学生成绩管理系统</h2>
-        <p class="mb-4 text-center text-secondary">请通过左侧导航栏管理学生、班级和成绩信息。</p>
-        <div class="d-grid gap-3">
-            <a asp-controller="Student" asp-action="Index" class="btn btn-primary btn-lg">学生管理</a>
-            <a asp-controller="Classes" asp-action="Manage" class="btn btn-outline-primary btn-lg">班级管理</a>
-            <a asp-controller="Grade" asp-action="Index" class="btn btn-outline-primary btn-lg">成绩管理</a>
-            <a asp-controller="Courses" asp-action="Index" class="btn btn-outline-primary btn-lg">课程管理</a>
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生成绩管理系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36CFC9',
+                        accent: '#722ED1',
+                        neutral: '#F5F7FA',
+                        'neutral-dark': '#1D2129',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        /* 自定义工具类，去除@layer utilities 包裹 */
+        .content-auto {
+            content-visibility: auto;
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(22, 93, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen font-inter text-neutral-dark">
+    <!-- 顶部导航栏 -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fa fa-graduation-cap text-primary text-2xl mr-2"></i>
+                <span class="fw-bold text-xl text-primary">学生成绩管理系统</span>
+            </a>
+
+            <!-- 移动端菜单按钮 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 导航菜单 -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a asp-controller="Student" asp-action="Index" class="nav-link active text-primary" aria-current="page">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Student" asp-action="Index" class="nav-link text-gray-600 hover:text-primary transition-colors">学生管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Classes" asp-action="Manage" class="nav-link text-gray-600 hover:text-primary transition-colors">班级管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Grade" asp-action="Index" class="nav-link text-gray-600 hover:text-primary transition-colors">成绩管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Courses" asp-action="Index" class="nav-link text-gray-600 hover:text-primary transition-colors">课程管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-600 hover:text-primary transition-colors"><i class="fa fa-user-circle-o mr-1"></i> 管理员</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="container py-8">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- 欢迎卡片 -->
+                <div class="card bg-gradient-to-r from-primary to-accent text-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                    <div class="card-body p-6 md:p-8">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h1 class="display-5 fw-bold mb-3 text-shadow">欢迎回来，管理员</h1>
+                                <p class="lead opacity-90 mb-6">今天是 <span id="current-date"></span>，您有 <span class="fw-bold">3 条</span> 待处理通知</p>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <a href="#" class="btn btn-light text-primary px-5 py-2.5 rounded-full fw-medium hover:bg-gray-100 transition-colors">
+                                        <i class="fa fa-tasks mr-2"></i> 查看待办事项
+                                    </a>
+                                    <a href="#" class="btn btn-outline-light px-5 py-2.5 rounded-full fw-medium hover:bg-white/10 transition-colors">
+                                        <i class="fa fa-bar-chart mr-2"></i> 查看统计数据
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-none d-md-block">
+                                <div class="text-center">
+                                    <i class="fa fa-graduation-cap text-8xl opacity-20"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 功能卡片区域 -->
+                <div class="row g-4 mb-8">
+                    <!-- 学生管理卡片 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 rounded-xl shadow-md card-hover">
+                            <div class="card-body p-6">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                    <i class="fa fa-users text-primary text-xl"></i>
+                                </div>
+                                <h3 class="card-title fs-5 fw-bold mb-2">学生管理</h3>
+                                <p class="card-text text-gray-600 mb-4">添加、编辑或删除学生信息，管理学生档案。</p>
+                                <a asp-controller="Student" asp-action="Index" class="btn btn-primary rounded-lg w-full">
+                                    <i class="fa fa-arrow-right mr-2"></i> 进入管理
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 班级管理卡片 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 rounded-xl shadow-md card-hover">
+                            <div class="card-body p-6">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                                    <i class="fa fa-sitemap text-green-600 text-xl"></i>
+                                </div>
+                                <h3 class="card-title fs-5 fw-bold mb-2">班级管理</h3>
+                                <p class="card-text text-gray-600 mb-4">创建和管理班级信息，分配班主任和学生。</p>
+                                <a asp-controller="Classes" asp-action="Manage" class="btn btn-primary rounded-lg w-full">
+                                    <i class="fa fa-arrow-right mr-2"></i> 进入管理
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 成绩管理卡片 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 rounded-xl shadow-md card-hover">
+                            <div class="card-body p-6">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                                    <i class="fa fa-line-chart text-purple-600 text-xl"></i>
+                                </div>
+                                <h3 class="card-title fs-5 fw-bold mb-2">成绩管理</h3>
+                                <p class="card-text text-gray-600 mb-4">录入、查询和分析学生成绩，生成成绩单。</p>
+                                <a asp-controller="Grade" asp-action="Index" class="btn btn-primary rounded-lg w-full">
+                                    <i class="fa fa-arrow-right mr-2"></i> 进入管理
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 数据统计卡片 -->
+                <div class="card border-0 rounded-xl shadow-md mb-8">
+                    <div class="card-header bg-white border-b-0 py-4 px-6">
+                        <h3 class="fs-5 fw-bold">系统数据统计</h3>
+                    </div>
+                    <div class="card-body p-6">
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fa fa-user text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">学生总数</p>
+                                        <p class="text-2xl fw-bold">2,543</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fa fa-users text-green-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">班级总数</p>
+                                        <p class="text-2xl fw-bold">68</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fa fa-book text-purple-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">课程总数</p>
+                                        <p class="text-2xl fw-bold">24</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fa fa-file-text-o text-orange-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500 text-sm">成绩记录</p>
+                                        <p class="text-2xl fw-bold">56,892</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最近更新区域 -->
+                <div class="card border-0 rounded-xl shadow-md">
+                    <div class="card-header bg-white border-b-0 py-4 px-6">
+                        <h3 class="fs-5 fw-bold">最近更新</h3>
+                    </div>
+                    <div class="card-body p-6">
+                        <div class="timeline">
+                            <div class="timeline-item mb-4">
+                                <div class="timeline-marker bg-primary"></div>
+                                <div class="timeline-content">
+                                    <p class="text-sm text-gray-500 mb-1">2025年6月24日 15:30</p>
+                                    <p class="fw-medium">完成了数学期中考试成绩录入</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item mb-4">
+                                <div class="timeline-marker bg-green-500"></div>
+                                <div class="timeline-content">
+                                    <p class="text-sm text-gray-500 mb-1">2025年6月23日 10:15</p>
+                                    <p class="fw-medium">新增了3个班级和120名学生信息</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item mb-4">
+                                <div class="timeline-marker bg-purple-500"></div>
+                                <div class="timeline-content">
+                                    <p class="text-sm text-gray-500 mb-1">2025年6月22日 16:40</p>
+                                    <p class="fw-medium">更新了系统界面，优化了移动端显示效果</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-6">
+                            <a href="#" class="text-primary hover:text-primary/80 transition-colors">
+                                查看所有更新 <i class="fa fa-angle-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container py-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-gray-500 text-sm">© 2025 学生成绩管理系统. 保留所有权利.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-gray-500 hover:text-primary mx-2 transition-colors">
+                        <i class="fa fa-question-circle mr-1"></i> 帮助中心
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary mx-2 transition-colors">
+                        <i class="fa fa-file-text-o mr-1"></i> 使用手册
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary mx-2 transition-colors">
+                        <i class="fa fa-envelope-o mr-1"></i> 联系我们
+                    </a>
         </div>
     </div>
 </div>
+    </footer>
+
+    <!-- 自定义样式 -->
+    <style>
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #E5E7EB;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #E5E7EB;
+        }
+
+        #current-date {
+            font-weight: bold;
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        // 设置当前日期
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            const currentDate = new Date().toLocaleDateString('zh-CN', dateOptions);
+            document.getElementById('current-date').textContent = currentDate;
+
+            // 添加按钮悬停效果
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.classList.add('shadow-md');
+                });
+                btn.addEventListener('mouseleave', function() {
+                    this.classList.remove('shadow-md');
+                });
+            });
+        });
+    </script>
+</body>
+</html>    

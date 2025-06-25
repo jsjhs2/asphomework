@@ -14,6 +14,7 @@ namespace SchoolManagementApp.Services
     public interface IUserAuthenticationService
     {
         Task<User> AuthenticateUser(string username, string password);
+        Task<Student> AuthenticateStudent(string rollNumber, string password);
         string HashPassword(string password);
     }
 
@@ -36,6 +37,19 @@ namespace SchoolManagementApp.Services
             // 使用通用的密码哈希工具类
             var hashedInput = PasswordHasher.HashPassword(password);
             return hashedInput == user.PasswordHash ? user : null;
+        }
+
+        public async Task<Student> AuthenticateStudent(string rollNumber, string password)
+        {
+            var student = await _context.Students
+                .Include(s => s.Class)
+                .FirstOrDefaultAsync(s => s.RollNumber == rollNumber);
+
+            if (student == null)
+                return null;
+
+            // 明文比对密码
+            return password == "123456" ? student : null;
         }
 
         public string HashPassword(string password)

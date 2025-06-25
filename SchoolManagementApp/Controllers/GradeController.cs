@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Teacher")]
     public class GradeController : Controller
     {
         private readonly SchoolContext _context;
@@ -26,6 +26,12 @@ namespace SchoolManagementApp.Controllers
         // GET: Grade
         public async Task<IActionResult> Index(int? classId, string subject)
         {
+            // 额外检查：确保不是学生角色
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("Index", "StudentDashboard");
+            }
+
             // 获取所有成绩，包括学生和班级信息
             var gradesQuery = _context.Grades
                 .Include(g => g.Student)
@@ -78,6 +84,12 @@ namespace SchoolManagementApp.Controllers
         // GET: Grade/Create
         public IActionResult Create(int? classId = null)
         {
+            // 额外检查：确保不是学生角色
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("Index", "StudentDashboard");
+            }
+
             var classes = _context.Classes.ToList();
             var students = classId.HasValue && classId.Value > 0
                 ? _context.Students.Where(s => s.ClassId == classId.Value).ToList()
@@ -131,6 +143,12 @@ namespace SchoolManagementApp.Controllers
         // GET: Grade/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            // 额外检查：确保不是学生角色
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("Index", "StudentDashboard");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -182,6 +200,12 @@ namespace SchoolManagementApp.Controllers
         // GET: Grade/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            // 额外检查：确保不是学生角色
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("Index", "StudentDashboard");
+            }
+
             if (id == null)
             {
                 return NotFound();

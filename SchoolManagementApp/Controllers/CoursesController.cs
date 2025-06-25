@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using SchoolManagementApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SchoolManagementApp.Controllers
 {
+    [Authorize(Roles = "Admin,Teacher")]
     public class CoursesController : Controller
     {
         private static List<Course> _courses = new List<Course>

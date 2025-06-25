@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Teacher")]
     public class StudentController : Controller
     {
         private readonly SchoolContext _context;
@@ -31,6 +31,12 @@ namespace SchoolManagementApp.Controllers
 
         public async Task<IActionResult> Index(string searchTerm)
         {
+            // 额外检查：确保不是学生角色
+            if (User.IsInRole("Student"))
+            {
+                return RedirectToAction("Index", "StudentDashboard");
+            }
+
             // 获取所有学生，包括班级信息
             var students = _context.Students.Include(s => s.Class).AsQueryable();
 

@@ -107,16 +107,16 @@ namespace SchoolManagementApp.Migrations
                 columns: new[] { "ClassId", "ClassCode", "ClassName", "CreatedDate", "Description", "LastUpdatedDate", "TeacherName" },
                 values: new object[,]
                 {
-                    { 1, "CS1", "计算机一班", new DateTime(2025, 6, 25, 0, 3, 32, 453, DateTimeKind.Local).AddTicks(8359), null, null, "张老师" },
-                    { 2, "MATH1", "数学一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1925), null, null, "李老师" },
-                    { 3, "ENG1", "英语一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1945), null, null, "王老师" },
-                    { 4, "PHY1", "物理一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1949), null, null, "赵老师" },
-                    { 5, "CHEM1", "化学一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1951), null, null, "钱老师" },
-                    { 6, "BIO1", "生物一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1953), null, null, "孙老师" },
-                    { 7, "HIST1", "历史一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1954), null, null, "周老师" },
-                    { 8, "LAW1", "法学一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1957), null, null, "吴老师" },
-                    { 9, "ART1", "艺术一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1960), null, null, "郑老师" },
-                    { 10, "PE1", "体育一班", new DateTime(2025, 6, 25, 0, 3, 32, 455, DateTimeKind.Local).AddTicks(1970), null, null, "王五" }
+                    { 1, "CS1", "计算机一班", new DateTime(2025, 6, 25, 10, 22, 22, 537, DateTimeKind.Local).AddTicks(2814), null, null, "张老师" },
+                    { 2, "MATH1", "数学一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(978), null, null, "李老师" },
+                    { 3, "ENG1", "英语一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(991), null, null, "王老师" },
+                    { 4, "PHY1", "物理一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(993), null, null, "赵老师" },
+                    { 5, "CHEM1", "化学一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(994), null, null, "钱老师" },
+                    { 6, "BIO1", "生物一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(996), null, null, "孙老师" },
+                    { 7, "HIST1", "历史一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(997), null, null, "周老师" },
+                    { 8, "LAW1", "法学一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(998), null, null, "吴老师" },
+                    { 9, "ART1", "艺术一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(999), null, null, "郑老师" },
+                    { 10, "PE1", "体育一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(1000), null, null, "王五" }
                 });
 
             migrationBuilder.InsertData(
@@ -164,15 +164,62 @@ namespace SchoolManagementApp.Migrations
                 values: new object[,]
                 {
                     { 1, 85m, 1, "计算机基础" },
-                    { 2, 90m, 2, "高等数学" },
-                    { 3, 88m, 3, "大学英语" },
-                    { 4, 92m, 4, "大学物理" },
-                    { 5, 80m, 5, "基础化学" },
-                    { 6, 87m, 6, "生物科学" },
-                    { 7, 78m, 7, "中国历史" },
-                    { 8, 91m, 8, "法学导论" },
-                    { 9, 95m, 9, "艺术鉴赏" },
-                    { 10, 98m, 10, "体育" }
+                    { 28, 91m, 6, "大学英语" },
+                    { 29, 89m, 6, "基础化学" },
+                    { 30, 85m, 6, "体育" },
+                    { 31, 78m, 7, "中国历史" },
+                    { 32, 72m, 7, "高等数学" },
+                    { 33, 85m, 7, "大学英语" },
+                    { 34, 68m, 7, "大学物理" },
+                    { 35, 88m, 7, "体育" },
+                    { 36, 91m, 8, "法学导论" },
+                    { 37, 86m, 8, "高等数学" },
+                    { 38, 89m, 8, "大学英语" },
+                    { 39, 94m, 8, "中国历史" },
+                    { 40, 82m, 8, "体育" },
+                    { 41, 95m, 9, "艺术鉴赏" },
+                    { 42, 79m, 9, "高等数学" },
+                    { 43, 87m, 9, "大学英语" },
+                    { 44, 92m, 9, "中国历史" },
+                    { 45, 89m, 9, "体育" },
+                    { 46, 98m, 10, "体育" },
+                    { 47, 84m, 10, "高等数学" },
+                    { 48, 86m, 10, "大学英语" },
+                    { 27, 83m, 6, "高等数学" },
+                    { 26, 87m, 6, "生物科学" },
+                    { 25, 90m, 5, "体育" },
+                    { 24, 82m, 5, "大学物理" },
+                    { 2, 78m, 1, "高等数学" },
+                    { 3, 92m, 1, "大学英语" },
+                    { 4, 88m, 1, "大学物理" },
+                    { 5, 95m, 1, "体育" },
+                    { 6, 90m, 2, "高等数学" },
+                    { 7, 85m, 2, "大学英语" },
+                    { 8, 87m, 2, "大学物理" },
+                    { 9, 93m, 2, "基础化学" },
+                    { 10, 88m, 2, "体育" },
+                    { 11, 88m, 3, "大学英语" },
+                    { 49, 80m, 10, "大学物理" },
+                    { 12, 82m, 3, "高等数学" },
+                    { 14, 89m, 3, "基础化学" },
+                    { 15, 92m, 3, "体育" },
+                    { 16, 92m, 4, "大学物理" },
+                    { 17, 88m, 4, "高等数学" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Grades",
+                columns: new[] { "GradeId", "Score", "StudentId", "Subject" },
+                values: new object[,]
+                {
+                    { 18, 85m, 4, "大学英语" },
+                    { 19, 90m, 4, "基础化学" },
+                    { 20, 87m, 4, "体育" },
+                    { 21, 80m, 5, "基础化学" },
+                    { 22, 85m, 5, "高等数学" },
+                    { 23, 78m, 5, "大学英语" },
+                    { 13, 75m, 3, "大学物理" },
+                    { 50, 88m, 10, "基础化学" }
                 });
 
             migrationBuilder.CreateIndex(

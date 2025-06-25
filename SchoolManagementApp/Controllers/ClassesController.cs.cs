@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SchoolManagementApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Teacher")]
     public class ClassesController : Controller
     {
         private readonly SchoolContext _context;
