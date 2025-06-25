@@ -59,7 +59,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 1,
                             ClassCode = "CS1",
                             ClassName = "计算机一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 537, DateTimeKind.Local).AddTicks(2814),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(90),
                             TeacherName = "张老师"
                         },
                         new
@@ -67,7 +67,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 2,
                             ClassCode = "MATH1",
                             ClassName = "数学一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(978),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8093),
                             TeacherName = "李老师"
                         },
                         new
@@ -75,7 +75,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 3,
                             ClassCode = "ENG1",
                             ClassName = "英语一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(991),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8106),
                             TeacherName = "王老师"
                         },
                         new
@@ -83,7 +83,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 4,
                             ClassCode = "PHY1",
                             ClassName = "物理一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(993),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8108),
                             TeacherName = "赵老师"
                         },
                         new
@@ -91,7 +91,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 5,
                             ClassCode = "CHEM1",
                             ClassName = "化学一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(994),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8110),
                             TeacherName = "钱老师"
                         },
                         new
@@ -99,7 +99,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 6,
                             ClassCode = "BIO1",
                             ClassName = "生物一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(996),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8111),
                             TeacherName = "孙老师"
                         },
                         new
@@ -107,7 +107,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 7,
                             ClassCode = "HIST1",
                             ClassName = "历史一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(997),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8112),
                             TeacherName = "周老师"
                         },
                         new
@@ -115,7 +115,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 8,
                             ClassCode = "LAW1",
                             ClassName = "法学一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(998),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8114),
                             TeacherName = "吴老师"
                         },
                         new
@@ -123,7 +123,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 9,
                             ClassCode = "ART1",
                             ClassName = "艺术一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(999),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8115),
                             TeacherName = "郑老师"
                         },
                         new
@@ -131,7 +131,7 @@ namespace SchoolManagementApp.Migrations
                             ClassId = 10,
                             ClassCode = "PE1",
                             ClassName = "体育一班",
-                            CreatedDate = new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(1000),
+                            CreatedDate = new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8116),
                             TeacherName = "王五"
                         });
                 });
@@ -606,6 +606,29 @@ namespace SchoolManagementApp.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SchoolManagementApp.Models.OperationLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OperationLogs");
+                });
+
             modelBuilder.Entity("SchoolManagementApp.Models.Student", b =>
                 {
                     b.Property<int>("StudentId")
@@ -781,7 +804,7 @@ namespace SchoolManagementApp.Migrations
             modelBuilder.Entity("SchoolManagementApp.Models.Grade", b =>
                 {
                     b.HasOne("SchoolManagementApp.Models.Student", "Student")
-                        .WithMany()
+                        .WithMany("Grades")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -803,6 +826,11 @@ namespace SchoolManagementApp.Migrations
             modelBuilder.Entity("SchoolManagementApp.Models.Classes", b =>
                 {
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("SchoolManagementApp.Models.Student", b =>
+                {
+                    b.Navigation("Grades");
                 });
 #pragma warning restore 612, 618
         }

@@ -102,7 +102,7 @@
                                     <a href="#" class="btn btn-light text-primary px-5 py-2.5 rounded-full fw-medium hover:bg-gray-100 transition-colors">
                                         <i class="fa fa-tasks mr-2"></i> 查看待办事项
                                     </a>
-                                    <a href="#" class="btn btn-outline-light px-5 py-2.5 rounded-full fw-medium hover:bg-white/10 transition-colors">
+                                    <a href="/Home/Statistics" class="btn btn-outline-light px-5 py-2.5 rounded-full fw-medium hover:bg-white/10 transition-colors">
                                         <i class="fa fa-bar-chart mr-2"></i> 查看统计数据
                                     </a>
                                 </div>
@@ -181,7 +181,7 @@
                                     </div>
                                     <div>
                                         <p class="text-gray-500 text-sm">学生总数</p>
-                                        <p class="text-2xl fw-bold">2,543</p>
+                                        <p class="text-2xl fw-bold">@Model.StudentCount</p>
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
                                     </div>
                                     <div>
                                         <p class="text-gray-500 text-sm">班级总数</p>
-                                        <p class="text-2xl fw-bold">68</p>
+                                        <p class="text-2xl fw-bold">@Model.ClassCount</p>
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@
                                     </div>
                                     <div>
                                         <p class="text-gray-500 text-sm">课程总数</p>
-                                        <p class="text-2xl fw-bold">24</p>
+                                        <p class="text-2xl fw-bold">@Model.CourseCount</p>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                                     </div>
                                     <div>
                                         <p class="text-gray-500 text-sm">成绩记录</p>
-                                        <p class="text-2xl fw-bold">56,892</p>
+                                        <p class="text-2xl fw-bold">@Model.GradeCount</p>
                                     </div>
                                 </div>
                             </div>
@@ -229,27 +229,16 @@
                     </div>
                     <div class="card-body p-6">
                         <div class="timeline">
-                            <div class="timeline-item mb-4">
-                                <div class="timeline-marker bg-primary"></div>
-                                <div class="timeline-content">
-                                    <p class="text-sm text-gray-500 mb-1">2025年6月24日 15:30</p>
-                                    <p class="fw-medium">完成了数学期中考试成绩录入</p>
+                            @foreach (var log in Model.RecentUpdates)
+                            {
+                                <div class="timeline-item mb-4">
+                                    <div class="timeline-marker bg-primary"></div>
+                                    <div class="timeline-content">
+                                        <p class="text-sm text-gray-500 mb-1">@log.Time.ToString("yyyy年M月d日 HH:mm")</p>
+                                        <p class="fw-medium">@log.User @log.Action</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="timeline-item mb-4">
-                                <div class="timeline-marker bg-green-500"></div>
-                                <div class="timeline-content">
-                                    <p class="text-sm text-gray-500 mb-1">2025年6月23日 10:15</p>
-                                    <p class="fw-medium">新增了3个班级和120名学生信息</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item mb-4">
-                                <div class="timeline-marker bg-purple-500"></div>
-                                <div class="timeline-content">
-                                    <p class="text-sm text-gray-500 mb-1">2025年6月22日 16:40</p>
-                                    <p class="fw-medium">更新了系统界面，优化了移动端显示效果</p>
-                                </div>
-                            </div>
+                            }
                         </div>
                         <div class="text-center mt-6">
                             <a href="#" class="text-primary hover:text-primary/80 transition-colors">

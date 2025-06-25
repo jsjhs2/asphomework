@@ -1,0 +1,162 @@
+@model SchoolManagementApp.Controllers.HomeController.SchoolStatisticsViewModel
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "班级与全校成绩统计";
+    var classNames = Model.ClassStats.Select(c => c.ClassName).ToList();
+    var avgScores = Model.ClassStats.Select(c => c.AverageScore).ToList();
+    var maxScores = Model.ClassStats.Select(c => c.MaxScore).ToList();
+    var minScores = Model.ClassStats.Select(c => c.MinScore).ToList();
+    var passRates = Model.ClassStats.Select(c => (c.PassRate * 100).ToString("F1")).ToList();
+    var excellentRates = Model.ClassStats.Select(c => (c.ExcellentRate * 100).ToString("F1")).ToList();
+    var scoreRanges = Model.ScoreRanges;
+    var allScores = Model.AllScores;
+    var selectedClassId = Context.Request.Query["classId"].ToString();
+}
+<div class="container py-5">
+    <h2 class="mb-4 text-primary">成绩统计分析</h2>
+    <form method="get" asp-action="Statistics" class="mb-3 d-flex align-items-center gap-2">
+        <label for="classId" class="form-label mb-0 me-2">选择班级：</label>
+        <select id="classId" name="classId" class="form-select w-auto" onchange="this.form.submit()">
+            <option value="">全校</option>
+            @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.AllClasses)
+            {
+                if (selectedClassId == item.Value)
+                {
+                    <option value="@item.Value" selected>@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        </select>
+    </form>
+    <div class="mb-3">
+        <button class="btn btn-primary me-2" onclick="showTab('school')">全校统计</button>
+        <button class="btn btn-outline-primary" onclick="showTab('class')">班级对比</button>
+    </div>
+    <div id="schoolTab">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <canvas id="schoolPie" height="200"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="schoolBar" height="200"></canvas>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <canvas id="schoolHistogram" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    <div id="classTab" style="display:none;">
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <canvas id="classBar" height="120"></canvas>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <canvas id="classPassBar" height="120"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="classExcellentBar" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    window.showTab = function(tab) {
+        document.getElementById('schoolTab').style.display = tab === 'school' ? '' : 'none';
+        document.getElementById('classTab').style.display = tab === 'class' ? '' : 'none';
+    }
+    // 全校饼图（分数段分布）
+    const pieData = {
+        labels: @Html.Raw(JsonConvert.SerializeObject(scoreRanges.Keys)),
+        datasets: [{
+            data: @Html.Raw(JsonConvert.SerializeObject(scoreRanges.Values)),
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(255, 159, 64, 0.7)',
+                'rgba(255, 99, 132, 0.7)'
+            ]
+        }]
+    };
+    new Chart(document.getElementById('schoolPie').getContext('2d'), {
+        type: 'pie',
+        data: pieData,
+        options: { plugins: { title: { display: true, text: '全校分数段分布' } } }
+    });
+    // 全校柱状图（及格率、优秀率）
+    new Chart(document.getElementById('schoolBar').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['及格率', '优秀率'],
+            datasets: [{
+                label: '比例(%)',
+                data: [@Model.SchoolPassRate * 100, @Model.SchoolExcellentRate * 100],
+                backgroundColor: ['rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)']
+            }]
+        },
+        options: { plugins: { title: { display: true, text: '全校及格率/优秀率' } }, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+    // 全校直方图（成绩分布）
+    const allScores = @Html.Raw(JsonConvert.SerializeObject(allScores));
+    function getHistogramBins(scores, binSize = 10) {
+        const bins = Array(10).fill(0);
+        scores.forEach(s => {
+            let idx = Math.floor(s / binSize);
+            if (idx >= bins.length) idx = bins.length - 1;
+            bins[idx]++;
+        });
+        return bins;
+    }
+    const bins = getHistogramBins(allScores);
+    new Chart(document.getElementById('schoolHistogram').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['0-9','10-19','20-29','30-39','40-49','50-59','60-69','70-79','80-89','90-100'],
+            datasets: [{
+                label: '人数',
+                data: bins,
+                backgroundColor: 'rgba(153, 102, 255, 0.7)'
+            }]
+        },
+        options: { plugins: { title: { display: true, text: '全校成绩直方图' } }, scales: { y: { beginAtZero: true } } }
+    });
+    // 各班级平均分柱状图
+    new Chart(document.getElementById('classBar').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(JsonConvert.SerializeObject(classNames)),
+            datasets: [
+                { label: '平均分', data: @Html.Raw(JsonConvert.SerializeObject(avgScores)), backgroundColor: 'rgba(54, 162, 235, 0.7)' },
+                { label: '最高分', data: @Html.Raw(JsonConvert.SerializeObject(maxScores)), backgroundColor: 'rgba(255, 206, 86, 0.7)' },
+                { label: '最低分', data: @Html.Raw(JsonConvert.SerializeObject(minScores)), backgroundColor: 'rgba(255, 99, 132, 0.7)' }
+            ]
+        },
+        options: { plugins: { title: { display: true, text: '各班成绩对比' } }, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+    // 各班级及格率柱状图
+    new Chart(document.getElementById('classPassBar').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(JsonConvert.SerializeObject(classNames)),
+            datasets: [{ label: '及格率(%)', data: @Html.Raw(JsonConvert.SerializeObject(passRates)), backgroundColor: 'rgba(54, 162, 235, 0.7)' }]
+        },
+        options: { plugins: { title: { display: true, text: '各班及格率' } }, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+    // 各班级优秀率柱状图
+    new Chart(document.getElementById('classExcellentBar').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(JsonConvert.SerializeObject(classNames)),
+            datasets: [{ label: '优秀率(%)', data: @Html.Raw(JsonConvert.SerializeObject(excellentRates)), backgroundColor: 'rgba(255, 206, 86, 0.7)' }]
+        },
+        options: { plugins: { title: { display: true, text: '各班优秀率' } }, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+</script> 

@@ -40,6 +40,21 @@ namespace SchoolManagementApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OperationLogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Action = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Time = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OperationLogs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -107,16 +122,16 @@ namespace SchoolManagementApp.Migrations
                 columns: new[] { "ClassId", "ClassCode", "ClassName", "CreatedDate", "Description", "LastUpdatedDate", "TeacherName" },
                 values: new object[,]
                 {
-                    { 1, "CS1", "计算机一班", new DateTime(2025, 6, 25, 10, 22, 22, 537, DateTimeKind.Local).AddTicks(2814), null, null, "张老师" },
-                    { 2, "MATH1", "数学一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(978), null, null, "李老师" },
-                    { 3, "ENG1", "英语一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(991), null, null, "王老师" },
-                    { 4, "PHY1", "物理一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(993), null, null, "赵老师" },
-                    { 5, "CHEM1", "化学一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(994), null, null, "钱老师" },
-                    { 6, "BIO1", "生物一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(996), null, null, "孙老师" },
-                    { 7, "HIST1", "历史一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(997), null, null, "周老师" },
-                    { 8, "LAW1", "法学一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(998), null, null, "吴老师" },
-                    { 9, "ART1", "艺术一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(999), null, null, "郑老师" },
-                    { 10, "PE1", "体育一班", new DateTime(2025, 6, 25, 10, 22, 22, 538, DateTimeKind.Local).AddTicks(1000), null, null, "王五" }
+                    { 1, "CS1", "计算机一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(90), null, null, "张老师" },
+                    { 2, "MATH1", "数学一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8093), null, null, "李老师" },
+                    { 3, "ENG1", "英语一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8106), null, null, "王老师" },
+                    { 4, "PHY1", "物理一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8108), null, null, "赵老师" },
+                    { 5, "CHEM1", "化学一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8110), null, null, "钱老师" },
+                    { 6, "BIO1", "生物一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8111), null, null, "孙老师" },
+                    { 7, "HIST1", "历史一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8112), null, null, "周老师" },
+                    { 8, "LAW1", "法学一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8114), null, null, "吴老师" },
+                    { 9, "ART1", "艺术一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8115), null, null, "郑老师" },
+                    { 10, "PE1", "体育一班", new DateTime(2025, 6, 25, 23, 5, 34, 580, DateTimeKind.Local).AddTicks(8116), null, null, "王五" }
                 });
 
             migrationBuilder.InsertData(
@@ -240,6 +255,9 @@ namespace SchoolManagementApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Grades");
+
+            migrationBuilder.DropTable(
+                name: "OperationLogs");
 
             migrationBuilder.DropTable(
                 name: "Users");

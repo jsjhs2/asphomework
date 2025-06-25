@@ -22,6 +22,8 @@ namespace SchoolManagementApp.Models
 
         public DbSet<Course> Courses { get; set; }
 
+        public DbSet<OperationLog> OperationLogs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(

@@ -2871,3 +2871,4 @@ C:\Users\19786\Desktop\新建文件夹 (2)\第一版\5.0\SchoolManagementApp\Sch
 C:\Users\19786\Desktop\新建文件夹 (2)\第一版\5.0\SchoolManagementApp\SchoolManagementApp\obj\Debug\net5.0\SchoolManagementApp.pdb
 C:\Users\19786\Desktop\新建文件夹 (2)\第一版\5.0\SchoolManagementApp\SchoolManagementApp\obj\Debug\net5.0\SchoolManagementApp.genruntimeconfig.cache
 C:\Users\19786\Desktop\新建文件夹 (2)\第一版\5.0\SchoolManagementApp\SchoolManagementApp\obj\Debug\net5.0\ref\SchoolManagementApp.dll
+C:\Users\19786\Desktop\新建文件夹 (2)\SchoolManagementApp\SchoolManagementApp\obj\Debug\net5.0\Razor\Views\Home\Statistics.cshtml.g.cs

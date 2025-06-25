@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace SchoolManagementApp.Models
 {
@@ -35,6 +36,7 @@ namespace SchoolManagementApp.Models
         // 导航属性
         public Classes Class { get; set; }
         public string Password { get; set; }
+        public ICollection<Grade> Grades { get; set; }
         
         
        
