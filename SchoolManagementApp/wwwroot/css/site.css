@@ -94,6 +94,133 @@ body {
     letter-spacing: 1px;
 }
 
+/* 优化的侧边栏样式 */
+.sidebar-optimized {
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    border-right: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-optimized::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
+    pointer-events: none;
+}
+
+.sidebar-optimized .nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 500;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin: 4px 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-optimized .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.sidebar-optimized .nav-link:hover::before {
+    left: 100%;
+}
+
+.sidebar-optimized .nav-link:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff !important;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.sidebar-optimized .nav-link.active {
+    background: rgba(255,255,255,0.2);
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-left: 4px solid #fff;
+    position: relative;
+}
+
+.sidebar-optimized .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #fff;
+    border-radius: 0 2px 2px 0;
+}
+
+.sidebar-optimized .nav-link i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-optimized .nav-link:hover i {
+    transform: scale(1.1);
+}
+
+.sidebar-optimized .sidebar-sticky {
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-optimized .fw-bold {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.sidebar-optimized .dropdown-toggle {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff !important;
+    transition: all 0.3s ease;
+}
+
+.sidebar-optimized .dropdown-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+.sidebar-optimized .dropdown-menu {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.sidebar-optimized .dropdown-item {
+    border-radius: 8px;
+    margin: 2px 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-optimized .dropdown-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateX(4px);
+}
+
 /* 首页卡片美化 */
 .home-card {
     background: #fff;
@@ -149,4 +276,62 @@ body {
     .home-card {
         padding: 24px 8px;
     }
+}
+
+/* Font Awesome 图标回退样式 */
+.sidebar-optimized .nav-link i {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    margin-right: 8px;
+}
+
+/* 防止图标显示为方块的回退样式 */
+.sidebar-optimized .nav-link i:before {
+    content: '' !important;
+}
+
+/* 为每个图标单独设置内容 */
+.sidebar-optimized .nav-link i.fas.fa-tachometer-alt:before {
+    content: '\f3fd' !important;
+}
+
+.sidebar-optimized .nav-link i.fas.fa-user-graduate:before {
+    content: '\f5fd' !important;
+}
+
+.sidebar-optimized .nav-link i.fas.fa-chalkboard-teacher:before {
+    content: '\f51c' !important;
+}
+
+.sidebar-optimized .nav-link i.fas.fa-chart-bar:before {
+    content: '\f080' !important;
+}
+
+.sidebar-optimized .nav-link i.fas.fa-book:before {
+    content: '\f02d' !important;
+}
+
+.sidebar-optimized .nav-link i.fa.fa-user:before {
+    content: '\f007' !important;
+}
+
+.sidebar-optimized .nav-link i.fa.fa-sign-out:before {
+    content: '\f08b' !important;
+}
+
+.sidebar-optimized .nav-link i.fa.fa-sign-in:before {
+    content: '\f090' !important;
+}
+
+/* 确保图标在加载失败时不会显示方块 */
+.sidebar-optimized .nav-link i.fas:before,
+.sidebar-optimized .nav-link i.fa:before {
+    font-family: 'Font Awesome 5 Free' !important;
+    font-weight: 900;
+}
+
+.sidebar-optimized .nav-link i.far:before {
+    font-family: 'Font Awesome 5 Free' !important;
+    font-weight: 400;
 }

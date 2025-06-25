@@ -6,31 +6,33 @@
     <title>学生成绩管理系统 - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     @RenderSection("Styles", required: false)
-    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/site.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
     <!-- 添加防缓存元标签 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <!-- 添加Font Awesome支持 -->
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome 备用CDN -->
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container-fluid">
         <div class="row min-vh-100">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4 border-end">
+            <nav class="col-md-2 d-none d-md-block sidebar sidebar-optimized py-4">
                 <div class="sidebar-sticky">
                     @{
                         var logoController = User.IsInRole("Student") ? "StudentDashboard" : "Home";
                     }
                     <a class="d-block text-decoration-none mb-4" asp-controller="@logoController" asp-action="Index">
-                        <div class="fw-bold fs-4 text-primary text-center" style="letter-spacing:1px;">成绩管理系统</div>
+                        <div class="fw-bold fs-4 text-center" style="letter-spacing:1px;">成绩管理系统</div>
                     </a>
                     <ul class="nav flex-column mb-4">
                         @if (User.IsInRole("Student"))
                         {
                             <!-- 学生菜单 -->
                             <li class="nav-item mb-2">
-                                <a class="nav-link text-dark" asp-controller="StudentDashboard" asp-action="Index">
+                                <a class="nav-link" asp-controller="StudentDashboard" asp-action="Index" data-controller="StudentDashboard">
                                     <i class="fas fa-tachometer-alt me-2"></i>我的仪表板
                                 </a>
                             </li>
@@ -39,22 +41,22 @@
                         {
                             <!-- 管理员和教师菜单 -->
                             <li class="nav-item mb-2">
-                                <a class="nav-link text-dark" asp-controller="Student" asp-action="Index">
+                                <a class="nav-link" asp-controller="Student" asp-action="Index" data-controller="Student">
                                     <i class="fas fa-user-graduate me-2"></i>学生管理
                                 </a>
                             </li>
                             <li class="nav-item mb-2">
-                                <a class="nav-link text-dark" asp-controller="Classes" asp-action="Manage">
-                                    <i class="fas fa-school me-2"></i>班级管理
+                                <a class="nav-link" asp-controller="Classes" asp-action="Manage" data-controller="Classes">
+                                    <i class="fas fa-chalkboard-teacher me-2"></i>班级管理
                                 </a>
                             </li>
                             <li class="nav-item mb-2">
-                                <a class="nav-link text-dark" asp-controller="Grade" asp-action="Index">
-                                    <i class="fas fa-clipboard-list me-2"></i>成绩管理
+                                <a class="nav-link" asp-controller="Grade" asp-action="Index" data-controller="Grade">
+                                    <i class="fas fa-chart-bar me-2"></i>成绩管理
                                 </a>
                             </li>
                             <li class="nav-item mb-2">
-                                <a class="nav-link text-dark" asp-controller="Courses" asp-action="Index">
+                                <a class="nav-link" asp-controller="Courses" asp-action="Index" data-controller="Courses">
                                     <i class="fas fa-book me-2"></i>课程管理
                                 </a>
                             </li>
@@ -64,13 +66,13 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-user"></i> @(User.FindFirst("DisplayName")?.Value ?? User.Identity.Name)
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li>
                                         <form asp-controller="Account" asp-action="Logout" method="post" class="dropdown-item">
-                                            <button type="submit" class="btn btn-link text-dark p-0">
+                                            <button type="submit" class="btn btn-link p-0">
                                                 <i class="fa fa-sign-out"></i> 退出登录
                                             </button>
                                         </form>
@@ -81,7 +83,7 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">
                                     <i class="fa fa-sign-in"></i> 登录
                                 </a>
                             </li>
@@ -119,6 +121,85 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <!-- 导航菜单激活状态脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 强制移除所有导航链接的active类
+            var allNavLinks = document.querySelectorAll('.nav-link');
+            allNavLinks.forEach(function(link) {
+                link.classList.remove('active');
+            });
+            
+            // 获取当前页面的路径
+            var currentPath = window.location.pathname;
+            var currentHref = window.location.href;
+            console.log('Current path:', currentPath);
+            console.log('Current href:', currentHref);
+            
+            // 检查是否是首页 - 如果是首页，直接返回，不设置任何激活状态
+            if (currentPath === '/' || 
+                currentPath === '/Home' || 
+                currentPath === '/Home/' ||
+                currentPath === '/Home/Index' ||
+                currentPath === '/Home/Index/' ||
+                currentHref.includes('/Home/Index') ||
+                currentHref.endsWith('/') ||
+                currentHref.endsWith('/Home') ||
+                currentHref.endsWith('/Home/')) {
+                console.log('Home page detected - no active menu item');
+                // 再次确保移除所有active类
+                setTimeout(function() {
+                    var allLinks = document.querySelectorAll('.nav-link');
+                    allLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                    });
+                }, 100);
+                return;
+            }
+            
+            // 只有在非首页时才设置激活状态
+            var activeLink = null;
+            
+            if (currentPath.includes('/StudentDashboard')) {
+                activeLink = document.querySelector('[data-controller="StudentDashboard"]');
+                console.log('StudentDashboard page detected');
+            } else if (currentPath.includes('/Student')) {
+                activeLink = document.querySelector('[data-controller="Student"]');
+                console.log('Student page detected');
+            } else if (currentPath.includes('/Classes')) {
+                activeLink = document.querySelector('[data-controller="Classes"]');
+                console.log('Classes page detected');
+            } else if (currentPath.includes('/Grade')) {
+                activeLink = document.querySelector('[data-controller="Grade"]');
+                console.log('Grade page detected');
+            } else if (currentPath.includes('/Courses')) {
+                activeLink = document.querySelector('[data-controller="Courses"]');
+                console.log('Courses page detected');
+            }
+            
+            // 设置激活状态
+            if (activeLink) {
+                activeLink.classList.add('active');
+                console.log('Set active class for:', activeLink.textContent.trim());
+            } else {
+                console.log('No matching link found for path:', currentPath);
+            }
+        });
+        
+        // 额外的安全检查 - 页面加载完成后再次检查
+        window.addEventListener('load', function() {
+            var currentPath = window.location.pathname;
+            if (currentPath === '/' || currentPath === '/Home' || currentPath === '/Home/Index') {
+                var allLinks = document.querySelectorAll('.nav-link');
+                allLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                });
+                console.log('Final check: removed all active classes on home page');
+            }
+        });
+    </script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
